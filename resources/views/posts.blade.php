@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>My Blog</title>
+<title>Yikes Blog</title>
 <link rel="stylesheet" href="/app.css">
 
 <body>
