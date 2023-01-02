@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>My Blog</title>
+<title>Oof Blog</title>
 <link rel="stylesheet" href="/app.css">
 
 <body>
