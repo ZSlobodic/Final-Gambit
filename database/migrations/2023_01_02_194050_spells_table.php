@@ -23,8 +23,10 @@ return new class extends Migration
             $table->string('range', 20);
             $table->string('target', 20);
             $table->string('components', 30);
-            $table->string('');
-            $table->string('');
+            $table->boolean('concentration');
+            $table->string('duration', 20);
+            $table->longtext('description');
+            $table->text('at_higher_levels');
             $table->timestamps();
         });
     }
@@ -38,4 +40,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('Spells');
     }
-}
+};
