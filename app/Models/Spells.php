@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Spells extends Model
 {
     protected $fillable = [
-        'spell_name','school', 'ritual', 'casting_time', 'range', 'target', 'components', 'concentration', 'duration', 'description', 'at_higher_levels'
+        'spell_name','school', 'level', 'ritual', 'casting_time', 'range', 'target', 'somatic', 'vocal', 'material', 'components', 'concentration', 'duration', 'description', 'at_higher_levels'
       ];
     
     public function Classes()

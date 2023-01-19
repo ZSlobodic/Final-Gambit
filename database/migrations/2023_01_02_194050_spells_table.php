@@ -18,10 +18,14 @@ return new class extends Migration
             $table->increments('id');
             $table->string('spell_name', 20);
             $table->string('school', 20);
+            $table->string('level', 20);
             $table->boolean('ritual');
             $table->string('casting_time', 20);
             $table->string('range', 20);
             $table->string('target', 20);
+            $table->boolean('somatic');
+            $table->boolean('vocal');
+            $table->boolean('material');
             $table->string('components', 30);
             $table->boolean('concentration');
             $table->string('duration', 20);
