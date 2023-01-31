@@ -12,9 +12,11 @@ class spells_controller extends Controller
     public function index(Request $request)
     {
       $spells = DB::table('spells')
-         -> get();
-
-      return view('spells.index', ['spells' => $spells]);
+      -> get();
+      $spell = DB::table('spells')
+      ->where('id', '=', '1')
+      ->first();
+      return view('spells.index', ['spells' => $spells, 'shown_spell' => $spell]);
     }
 
     public function getcreateSpell(Request $request)
@@ -45,4 +47,68 @@ class spells_controller extends Controller
 
           return view('spells.create_spell');
         }
+
+    public function editSpell(int $id)
+    {
+      $spell = DB::table('spells')
+          ->where('id', '=', $id)
+          ->first();
+      return view('spells.edit',compact('spell'));
+    }
+
+    public function updateSpell(Request $request, int $id)
+    {
+
+        $request->validate([
+          'spell_name' => 'required',
+          'school' => 'required',
+          'casting_time' => 'required',
+          'range' => 'required',
+          'duration' => 'required',
+          'description' => 'required',
+        ]);
+
+
+        $spell = DB::table('spells')
+            ->where('id', '=', $id)
+            ->update(['spell_name' => $request->spell_name,
+            'school' => $request->school,
+            'level' => $request->level,
+            'ritual' => $request->ritual,
+            'casting_time' => $request->casting_time,
+            'range' => $request->range,
+            'target' => $request->target,
+            'somatic' => $request->somatic,
+            'vocal' => $request->vocal,
+            'material' => $request->material,
+            'components' => $request->components,
+            'concentration' => $request->concentration,
+            'duration' => $request->duration,
+            'description' => $request->description,
+            'at_higher_levels' => $request->at_higher_levels ]);
+            return redirect()->route('spells.index')
+            ->with('success','Spell updated successfully');
+    }
+
+    public function deleteSpell(int $id)
+    {
+      $spell = DB::table('spells')
+      ->where('id', '=', $id)
+      ->delete();
+
+      return redirect()->route('spells.index')
+      ->with('success','Spell deleted successfully.');
+    }
+
+    public function showSpell(int $id)
+    {
+      $spell = DB::table('spells')
+      ->where('id', '=', $id)
+      ->first();
+      //dd($spell);
+      $spells = DB::table('spells')
+         -> get();
+
+      return view('spells.index', ['spells' => $spells, 'shown_spell' => $spell]);
+    }
 }

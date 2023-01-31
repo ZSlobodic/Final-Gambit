@@ -31,4 +31,40 @@ class feats_controller extends Controller
 
           return view('feats.create_feat');
         }
+
+    public function editFeat(int $id)
+        {
+          $feat = DB::table('feats')
+              ->where('id', '=', $id)
+              ->first();
+          return view('feats.edit',compact('feat'));
+        }
+    
+    public function updateFeat(Request $request, int $id)
+        {
+    
+          $request->validate([
+            'feat_name' => 'required',
+          ]);
+    
+    
+          $feat = DB::table('feats')
+            ->where('id', '=', $id)
+            ->update(['feat_name' => $request->feat_name
+            /*'place' => $request->place,
+            'procent' => $request->procent, 
+            'scanner_code' => $request->scanner_code*/ ]);
+            return redirect()->route('feats.index')
+            ->with('success','Feat updated successfully');
+        }
+    
+        public function deleteFeat(int $id)
+        {
+          $feat = DB::table('feats')
+          ->where('id', '=', $id)
+          ->delete();
+
+          return redirect()->route('feats.index')
+          ->with('success','Feat deleted successfully.');
+        }
 }

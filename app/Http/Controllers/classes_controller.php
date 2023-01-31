@@ -40,24 +40,31 @@ class classes_controller extends Controller
       return view('classes.edit',compact('class'));
     }
 
-    public function updateClass(Request $request, Classes $class)
+    public function updateClass(Request $request, int $id)
     {
-
+        //dd($request, $class);
         $request->validate([
           'class_name' => 'required',
         ]);
 
 
-        $material->update($request->all());
-        return redirect()->route('materials.index')
-          ->with('success','Material updated successfully');
+        $class = DB::table('classes')
+          ->where('id', '=', $id)
+          ->update(['class_name' => $request->class_name
+            /*'place' => $request->place,
+            'procent' => $request->procent, 
+            'scanner_code' => $request->scanner_code*/ ]);
+        return redirect()->route('classes.index')
+          ->with('success','Class updated successfully');
     }
 
-    public function destroy(Material $material)
+    public function deleteClass(int $id)
     {
-        $material->delete();
+      $class = DB::table('classes')
+      ->where('id', '=', $id)
+      ->delete();
 
-        return redirect()->route('materials.index')
-        ->with('success','Material deleted successfully');
+      return redirect()->route('classes.index')
+      ->with('success','Class deleted successfully.');
     }
 }

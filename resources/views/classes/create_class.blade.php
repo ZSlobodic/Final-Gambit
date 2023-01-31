@@ -15,5 +15,6 @@
 
     <button type="submit" class="btn btn-success btn-block">F</button>
 </form>
-    <a href="/">Go Back</a>
+<a href="/classes">Back to the class page!</a><br>
+<a href="/">Home</a>
 </body>

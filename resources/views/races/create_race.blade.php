@@ -15,5 +15,6 @@
 
     <button type="submit" class="btn btn-success btn-block">F</button>
 </form>
-    <a href="/">Go Back</a>
+<a href="/races">Back to the race page!</a><br>
+<a href="/">Home</a>
 </body>

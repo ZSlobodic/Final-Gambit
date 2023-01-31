@@ -5,10 +5,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Class</h2>
+            <h2>Edit Feat</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-info" href="{{ route('classes.index') }}">Back</a>
+            <a class="btn btn-info" href="{{ route('feats.index') }}">Back</a>
         </div>
     </div>
 </div>
@@ -24,11 +24,11 @@
         </div>
 @endif
 
-<form action="{{ route('classes.updateClass',$class->id) }}" method="POST">
+<form action="{{ route('feats.updateFeat',$feat->id) }}" method="POST">
     @csrf
     <div class="form-group">
         <label for="reference">Reference </label>
-        <input type="text" class="form-control" value="{{ $class->class_name }}" placeholder="Enter Class Name" name ="class_name">
+        <input type="text" class="form-control" value="{{ $feat->feat_name }}" placeholder="Enter Feat Name" name ="feat_name">
     </div>
 
     <button type="submit" class="btn btn-success btn-block">Save</button>

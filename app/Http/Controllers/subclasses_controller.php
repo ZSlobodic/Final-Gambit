@@ -31,4 +31,40 @@ class subclasses_controller extends Controller
 
           return view('subclasses.create_subclass');
         }
+
+    public function editSubclass(int $id)
+    {
+      $subclass = DB::table('subclasses')
+          ->where('id', '=', $id)
+          ->first();
+      return view('subclasses.edit',compact('subclass'));
+    }
+
+    public function updateSubclass(Request $request, int $id)
+    {
+
+        $request->validate([
+          'subclass_name' => 'required',
+        ]);
+
+
+        $subclass = DB::table('subclasses')
+            ->where('id', '=', $id)
+            ->update(['subclass_name' => $request->subclass_name
+            /*'place' => $request->place,
+            'procent' => $request->procent, 
+            'scanner_code' => $request->scanner_code*/ ]);
+            return redirect()->route('subclasses.index')
+            ->with('success','Subclass updated successfully');
+    }
+
+    public function deleteSubclass(int $id)
+    {
+      $subclass = DB::table('subclasses')
+      ->where('id', '=', $id)
+      ->delete();
+
+      return redirect()->route('subclasses.index')
+      ->with('success','Subclass deleted successfully.');
+    }
 }

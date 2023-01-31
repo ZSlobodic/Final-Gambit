@@ -89,5 +89,6 @@
 
     <button type="submit" class="btn btn-success btn-block">F</button>
 </form>
-    <a href="/">Go Back</a>
+<a href="/spells">Back to the spell page!</a><br>
+<a href="/">Home</a>
 </body>

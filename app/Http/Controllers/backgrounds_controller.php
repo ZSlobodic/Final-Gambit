@@ -30,4 +30,40 @@ class backgrounds_controller extends Controller
 
           return view('backgrounds.create_background');
         }
+
+    public function editBackground(int $id)
+    {
+      $background = DB::table('backgrounds')
+          ->where('id', '=', $id)
+          ->first();
+      return view('backgrounds.edit',compact('background'));
+    }
+
+    public function updateBackground(Request $request, int $id)
+    {
+
+        $request->validate([
+          'background_name' => 'required',
+        ]);
+
+
+        $background = DB::table('backgrounds')
+          ->where('id', '=', $id)
+          ->update(['background_name' => $request->background_name
+            /*'place' => $request->place,
+            'procent' => $request->procent, 
+            'scanner_code' => $request->scanner_code*/ ]);
+        return redirect()->route('backgrounds.index')
+          ->with('success','Background updated successfully');
+    }
+
+    public function deleteBackground(int $id)
+    {
+      $background = DB::table('backgrounds')
+      ->where('id', '=', $id)
+      ->delete();
+
+      return redirect()->route('backgrounds.index')
+      ->with('success','Background deleted successfully.');
+    }
 }
