@@ -1,12 +1,51 @@
 <!doctype html>
 
 
-<title>Editing Spells is Fun</title>
+<title>Spell Database</title>
 <link rel="stylesheet" href="/app.css">
 
 <body>
 
 <a href="spells/createSpell">Create a new spell!</a>
+
+<form action="{{ url('/spells/'. $shown_spell->id) }}" method="GET">
+    @csrf
+    
+    <label for="reference">Class: </label>
+    @foreach ($classes as $class)
+    <label for="reference">{{$class->class_name}}</label>
+    <input type="checkbox" class="form-control" name ="class[]" value="{{$class->class_name}}">
+    @endforeach
+    <br>
+    <label for="reference">Subclass: </label>
+    @foreach ($subclasses as $subclass)
+    <label for="reference">{{$subclass->subclass_name}}</label>
+    <input type="checkbox" class="form-control" name ="{{$subclass->subclass_name}}">
+    @endforeach
+    <br>
+    <label for="reference">Race: </label>
+    @foreach ($races as $race)
+    <label for="reference">{{$race->race_name}}</label>
+    <input type="checkbox" class="form-control" name ="{{$race->race_name}}">
+    @endforeach
+    <br>
+    <label for="reference">Background: </label>
+    @foreach ($backgrounds as $background)
+    <label for="reference">{{$background->background_name}}</label>
+    <input type="checkbox" class="form-control" name ="{{$background->background_name}}">
+    @endforeach
+    <br>
+    <label for="reference">Feat: </label>
+    @foreach ($feats as $feat)
+    <label for="reference">{{$feat->feat_name}}</label>
+    <input type="checkbox" class="form-control" name ="{{$feat->feat_name}}">
+    @endforeach
+
+    <br>
+    <button type="submit" class="btn btn-success btn-block">Filter</button>
+
+
+</form>
 
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -14,7 +53,6 @@
         </div>
     </div>
 </div>
-
                 <th scope="row">{{ $shown_spell->id}}</th>
                 <td>{{$shown_spell->spell_name}}</td>
                 <td>{{$shown_spell->school}}</td>
@@ -57,7 +95,6 @@
         @foreach ($spells as $spell)
             <tr>
                 <th scope="row">{{ $spell->id}}</th>
-                <td>{{$spell->spell_name}}</td>
                 <td><a href = "{{ route('spells.showSpell',$spell->id) }}">{{$spell->spell_name}}</td>
                 <td>{{$spell->school}}</td>
                 <td>{{$spell->level}}</td>

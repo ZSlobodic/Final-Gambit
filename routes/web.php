@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Post;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\spells_controller;
 use App\Http\Controllers\classes_controller;
@@ -24,6 +24,18 @@ use App\Http\Controllers\feats_controller;
 Route::get('/', function () {
     return view('start_page');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
 
 //SPELLS
 Route::get('spells/createSpell', [spells_controller::class, 'getcreateSpell'])->name('spells.getcreateSpell');
@@ -87,4 +99,3 @@ Route::get('feats/editFeat/{id}', [feats_controller::class, 'editFeat'])->name('
 Route::post('feats/updateFeat/{id}', [feats_controller::class, 'updateFeat'])->name('feats.updateFeat');
 Route::get('feats/deleteFeat/{id}', [feats_controller::class, 'deleteFeat'])->name('feats.deleteFeat');
 // Adding a page for editing my stuff.
-

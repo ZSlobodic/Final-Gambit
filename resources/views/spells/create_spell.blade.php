@@ -87,6 +87,8 @@
         <textarea class="form-control" rows="3"placeholder ="Enter Higher Level Effect" name="at_higher_levels"></textarea>
     </div>
 
+    
+
     <button type="submit" class="btn btn-success btn-block">F</button>
 </form>
 <a href="/spells">Back to the spell page!</a><br>

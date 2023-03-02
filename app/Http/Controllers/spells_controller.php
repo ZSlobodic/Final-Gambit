@@ -16,11 +16,32 @@ class spells_controller extends Controller
       $spell = DB::table('spells')
       ->where('id', '=', '1')
       ->first();
-      return view('spells.index', ['spells' => $spells, 'shown_spell' => $spell]);
+      $classes = DB::table('classes')
+      -> get();
+      $subclasses = DB::table('subclasses')
+      -> get();
+      $races = DB::table('races')
+      -> get();
+      $backgrounds = DB::table('backgrounds')
+      -> get();
+      $feats = DB::table('feats')
+      -> get();
+      //dd($classes);
+      return view('spells.index', [
+        'spells' => $spells,
+        'shown_spell' => $spell,
+        'classes' => $classes,
+        'subclasses' => $subclasses,
+        'races' => $races,
+        'backgrounds' => $backgrounds,
+        'feats' => $feats
+      ]);
     }
 
     public function getcreateSpell(Request $request)
       {
+        
+        
         return view('spells.create_spell');
       }
 
@@ -100,15 +121,48 @@ class spells_controller extends Controller
       ->with('success','Spell deleted successfully.');
     }
 
-    public function showSpell(int $id)
+    public function showSpell(int $id, Request $request, )
     {
       $spell = DB::table('spells')
       ->where('id', '=', $id)
       ->first();
-      //dd($spell);
+      //dd($request);
       $spells = DB::table('spells')
-         -> get();
+      -> get();
+      $classes = DB::table('classes')
+      -> get();
+      $subclasses = DB::table('subclasses')
+      -> get();
+      $races = DB::table('races')
+      -> get();
+      $backgrounds = DB::table('backgrounds')
+      -> get();
+      $feats = DB::table('feats')
+      -> get();
+      //dd($classes);
 
-      return view('spells.index', ['spells' => $spells, 'shown_spell' => $spell]);
+      $lists = [];
+      foreach($request -> class as $key => $class){
+        switch ($class) {
+          case ("Artificer"):
+            $lists[] = 'Artificer';
+            //dd($request);
+            //break;
+          case ("Bard"):
+            $lists[] = 'Bard';
+            dd($request, $lists);
+          }
+      }
+      
+      return view('spells.index', [
+        'spells' => $spells,
+        'shown_spell' => $spell,
+        'classes' => $classes,
+        'subclasses' => $subclasses,
+        'races' => $races,
+        'backgrounds' => $backgrounds,
+        'feats' => $feats
+        ]);
     }
+    
 }
