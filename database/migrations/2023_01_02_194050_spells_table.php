@@ -16,19 +16,19 @@ return new class extends Migration
         Schema::create('Spells', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('spell_name', 20);
-            $table->string('school', 20);
-            $table->string('level', 20);
+            $table->string('spell_name', 100);
+            $table->string('school', 100);
+            $table->string('level', 100);
             $table->boolean('ritual');
-            $table->string('casting_time', 20);
-            $table->string('range', 20);
-            $table->string('target', 20);
+            $table->string('casting_time', 100);
+            $table->string('range', 100);
+            $table->string('target', 100);
             $table->boolean('somatic');
             $table->boolean('vocal');
             $table->boolean('material');
-            $table->string('components', 30);
+            $table->string('components', 200);
             $table->boolean('concentration');
-            $table->string('duration', 20);
+            $table->string('duration', 100);
             $table->longtext('description');
             $table->text('at_higher_levels');
             $table->timestamps();

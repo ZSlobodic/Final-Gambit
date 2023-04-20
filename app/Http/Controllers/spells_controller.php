@@ -140,6 +140,16 @@ class spells_controller extends Controller
       $feats = DB::table('feats')
       -> get();
       //dd($classes);
+      
+      return view('spells.index', [
+        'spells' => $spells,
+        'shown_spell' => $spell,
+        'classes' => $classes,
+        'subclasses' => $subclasses,
+        'races' => $races,
+        'backgrounds' => $backgrounds,
+        'feats' => $feats
+      ]);
 
       $lists = [];
       foreach($request -> class as $key => $class){
@@ -151,18 +161,9 @@ class spells_controller extends Controller
           case ("Bard"):
             $lists[] = 'Bard';
             dd($request, $lists);
-          }
+        }
       }
-      
-      return view('spells.index', [
-        'spells' => $spells,
-        'shown_spell' => $spell,
-        'classes' => $classes,
-        'subclasses' => $subclasses,
-        'races' => $races,
-        'backgrounds' => $backgrounds,
-        'feats' => $feats
-        ]);
     }
+
     
 }

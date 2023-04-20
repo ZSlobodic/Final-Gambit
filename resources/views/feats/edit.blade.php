@@ -62,11 +62,20 @@
 <form action="{{ route('feats.updateFeat',$feat->id) }}" method="POST">
     @csrf
     <div class="form-group">
+        <div class="container-sm">    
+        </div>
+
+        <div class="container-lg">
         <label for="reference">Edit Feat name: </label>
         <input type="text" class="form-control" value="{{ $feat->feat_name }}" placeholder="Enter Feat Name" name ="feat_name">
+        <button type="submit" class="btn btn-success btn-block">Save</button>
+        </div>
+        
+        <div class="container-sm">    
+        </div>
     </div>
 
-    <button type="submit" class="btn btn-success btn-block">Save</button>
+    
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

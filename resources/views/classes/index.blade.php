@@ -65,25 +65,36 @@
     </div>
 </div>
 
-<table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Class Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($classes as $class)
-            <tr>
-                <th scope="row">{{$class->id}}</th>
-                <td>{{$class->class_name}}</td>
+<div class="form-group">
+    <div class="container-sm">    
+    </div> 
 
-                <td><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('classes.editClass',$class->id) }}">Edit</a></td>
-                <td><a class="btn d-grid gap-2 btn-danger btn-rounded btn-sm fw-bold" href="{{ route('classes.deleteClass',$class->id) }}" onclick="return confirm('Are you sure you want to delete {{$class->class_name}}? \nThis action is permananet and non-reversable.')">Delete</a></td>
+    <div class="container-lg">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Class Name</th>
             </tr>
-        @endforeach
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach ($classes as $class)
+                <tr>
+                    <th scope="row" class="col-md-1">{{$class->id}}</th>
+                    <td>{{$class->class_name}}</td>
+
+                    <td class="col-md-1"><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('classes.editClass',$class->id) }}">Edit</a></td>
+                    <td class="col-md-1"><a class="btn d-grid gap-2 btn-danger btn-rounded btn-sm fw-bold" href="{{ route('classes.deleteClass',$class->id) }}" onclick="return confirm('Are you sure you want to delete {{$class->class_name}}? \nThis action is permananet and non-reversable.')">Delete</a></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    </div>
+
+    <div class="container-sm">    
+    </div> 
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

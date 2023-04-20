@@ -9,6 +9,8 @@
 
 </head>
 
+<body>
+
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
                 <a class="navbar-brand" href="#">ZiK</a>
@@ -38,18 +40,23 @@
         </div>
 </nav>
 
-
-<body>
 <form action="{{ route('classes.createClass') }}" method="POST">
     @csrf
-
     <div class="form-group">
+        <div class="container-sm">
+        </div>
+
+        <div class="container-lg">
         <label for="reference">Class Name: </label>
         <input type="text" class="form-control"  placeholder="Enter Class Name" name ="class_name">
-    </div>
+        <button type="submit" class="btn btn-success btn-block">Save</button>
+        </div>
 
-    <button type="submit" class="btn btn-success btn-block">Save</button>
+        <div class="container-sm">    
+        </div>
+    </div>
 </form>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
