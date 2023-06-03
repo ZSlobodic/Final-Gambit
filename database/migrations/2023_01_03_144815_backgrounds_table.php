@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('Backgrounds', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('background_name', 20);
+            $table->string('background_name', 100);
             $table->timestamps();
         });
     }

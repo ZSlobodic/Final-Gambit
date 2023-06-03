@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('Subclasses', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('subclass_name', 20);
+            $table->string('subclass_name', 100);
             $table->timestamps();
         });
     }

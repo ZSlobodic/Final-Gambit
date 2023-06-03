@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('Feats', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('feat_name', 20);
+            $table->string('feat_name', 100);
             $table->timestamps();
         });
     }

@@ -48,131 +48,80 @@
                 </ul>
 
                 
-                <form class="d-flex" role="search">
+                <!--<form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                </form>-->
             </div>
         </div>
 </nav>
 
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Filter
-</button>
+<div class="container" style="margin-bottom: 40px; margin-top:40px">
+   
+    <div class="input-group">
+        <td>
+            <form action="{{ route('spells.index') }}" method="GET">
+                <label for="SNquery">Search by Spell Name:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="SNquery" value="{{ old('SNquery') }}" placeholder="Search by Spell Name..." aria-describedby="button-addon1">
+                    <button type="submit" class="btn btn-primary" style="margin-right:40px">Search</button>
+                </div>
+            </form>
+        </td>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Filter</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    <div class="modal-body">
-        
-        <form action="{{ url('/spells/'. $shown_spell->id) }}" method="GET">
-        @csrf
-        
-        <label for="reference">Class: </label>
-        @foreach ($classes as $class)
-        <label for="reference">{{$class->class_name}}</label>
-        <input type="checkbox" class="form-control" name ="class[]" value="{{$class->class_name}}">
-        @endforeach
-        <br>
-        <label for="reference">Subclass: </label>
-        @foreach ($subclasses as $subclass)
-        <label for="reference">{{$subclass->subclass_name}}</label>
-        <input type="checkbox" class="form-control" name ="{{$subclass->subclass_name}}">
-        @endforeach
-        <br>
-        <label for="reference">Race: </label>
-        @foreach ($races as $race)
-        <label for="reference">{{$race->race_name}}</label>
-        <input type="checkbox" class="form-control" name ="{{$race->race_name}}">
-        @endforeach
-        <br>
-        <label for="reference">Background: </label>
-        @foreach ($backgrounds as $background)
-        <label for="reference">{{$background->background_name}}</label>
-        <input type="checkbox" class="form-control" name ="{{$background->background_name}}">
-        @endforeach
-        <br>
-        <label for="reference">Feat: </label>
-        @foreach ($feats as $feat)
-        <label for="reference">{{$feat->feat_name}}</label>
-        <input type="checkbox" class="form-control" name ="{{$feat->feat_name}}">
-        @endforeach
-
-        <br>
-        <button type="submit" class="btn btn-success btn-block">Filter</button>
-
-
-        </form>
-
+        <td>
+            <form action="{{ route('spells.index') }}" method="GET">
+                <label for="SLquery">Search by Spell Level:</label>
+                <div class="input-group">
+                    <select name="SLquery" id="SLquery" class="form-control">
+                        <option value="">Choose...</option>
+                        <option value="Cantrip">Cantrip</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="5th">5th</option>
+                        <option value="6th">6th</option>
+                        <option value="7th">7th</option>
+                        <option value="8th">8th</option>
+                        <option value="9th">9th</option>
+                    </select>
+                    <button type="submit" value="Submit" class="btn btn-primary" id="button-addon1" style="margin-right:40px">Search</button>
+                </div>
+            </form>
+        </td>
+                
+        <td>
+            <form action="{{ route('spells.index') }}" method="GET">
+                <label for="SSquery">Search by the School of Spell:</label>
+                <div class="input-group">
+                    <select name="SSquery" id="SSquery" class="form-control">
+                        <option value="">Choose...</option>
+                        <option value="Abjuration">Abjuration</option>
+                        <option value="Conjuration">Conjuration</option>
+                        <option value="Divination">Divination</option>
+                        <option value="Enchantment">Enchantment</option>
+                        <option value="Evocation">Evocation</option>
+                        <option value="Illusion">Illusion</option>
+                        <option value="Necromancy">Necromancy</option>
+                        <option value="Transmutation">Transmutation</option>
+                    </select>
+                    <button type="submit" value="Submit" class="btn btn-primary" id="button-addon1" style="margin-right:40px">Search</button>
+                </div>
+            </form>
+        </td>
     </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+
 </div>
 
-
-
-<!--<form action="{{ url('/spells/'. $shown_spell->id) }}" method="GET">
-    @csrf
-    
-    <label for="reference">Class: </label>
-    @foreach ($classes as $class)
-    <label for="reference">{{$class->class_name}}</label>
-    <input type="checkbox" class="form-control" name ="class[]" value="{{$class->class_name}}">
-    @endforeach
-    <br>
-    <label for="reference">Subclass: </label>
-    @foreach ($subclasses as $subclass)
-    <label for="reference">{{$subclass->subclass_name}}</label>
-    <input type="checkbox" class="form-control" name ="{{$subclass->subclass_name}}">
-    @endforeach
-    <br>
-    <label for="reference">Race: </label>
-    @foreach ($races as $race)
-    <label for="reference">{{$race->race_name}}</label>
-    <input type="checkbox" class="form-control" name ="{{$race->race_name}}">
-    @endforeach
-    <br>
-    <label for="reference">Background: </label>
-    @foreach ($backgrounds as $background)
-    <label for="reference">{{$background->background_name}}</label>
-    <input type="checkbox" class="form-control" name ="{{$background->background_name}}">
-    @endforeach
-    <br>
-    <label for="reference">Feat: </label>
-    @foreach ($feats as $feat)
-    <label for="reference">{{$feat->feat_name}}</label>
-    <input type="checkbox" class="form-control" name ="{{$feat->feat_name}}">
-    @endforeach
-
-    <br>
-    <button type="submit" class="btn btn-success btn-block">Filter</button>
-
-
-</form>-->
-
-<!--<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-right">
-        </div>
-    </div>
-</div>-->
 
 
 <div class="container">
 <div class="row">
 
-
 <div class="col-md-auto">
-<div class="form-group" style="width: 45rem; max-height: 800px; overflow-y: scroll">
+<div class="form-group" style="width: 50rem; max-height: 800px; overflow-y: scroll">
     <!--<div class="container-sm">    
     </div>-->
 
@@ -246,9 +195,11 @@
 
 
 <div class="col">
-<div class="card" style="width: 30rem; max-height: 800px; overflow-y: scroll">
-    <!--<th scope="row">{{ $shown_spell->id}}</th><br>-->
+<div class="card" style="width: 29rem; max-height: 800px; overflow-y: scroll">
     <div class="card-body">
+        @if ($shown_spell == Null)
+
+        @else
         <h1><td>{{$shown_spell->spell_name}}</td></h1>
         <p>
             @if (($shown_spell->level) == "Cantrip")
@@ -290,27 +241,23 @@
                 <td>Target: {{$shown_spell->target}}</td>
             @endif
         </p>
-        <p>Components: 
-            @switch ($shown_spell->vocal)
-                @case (1)
-                    @if (($shown_spell->material) == "1" or ($shown_spell->somatic) == "1")
-                        <td>V,</td>
-                    @elseif (($shown_spell->material) == "0" and ($shown_spell->somatic) == "0")
-                        <td>V</td>
-                    @endif
-                @break
-            @endswitch
 
-            @switch ($shown_spell->somatic)
-                @case (1)
-                    @if (($shown_spell->material) == "1")
-                        <td>S,</td>
-                    @elseif (($shown_spell->material) == "0")
-                        <td>S</td>
-                    @endif
-                @break
-            @endswitch
+        <!--Components which are represented by the V, S, and M letters.-->
+        <p>Components: <!--Vocal-->
+            @if (($shown_spell->vocal) == "1" and ($shown_spell->material) == "1" or ($shown_spell->somatic) == "1")
+                <td>V,</td>
+            @elseif (($shown_spell->vocal) == "1" and ($shown_spell->material) == "0" and ($shown_spell->somatic) == "0")
+                <td>V</td>
+            @endif
 
+            <!--Somatic-->
+            @if (($shown_spell->somatic) == "1" and ($shown_spell->material) == "1")
+                <td>S,</td>
+            @elseif (($shown_spell->somatic) == "1" and ($shown_spell->material) == "0")
+                <td>S</td>
+            @endif
+
+            <!--Material-->
             @switch ($shown_spell->material)
                 @case (1)
                     <td>M ({{$shown_spell->components}})</td>
@@ -336,6 +283,7 @@
                 <td>At higher levels: {{$shown_spell->at_higher_levels}}</td>
             @endif
         </td></p>
+        @endif
     </div>
 </div>
 </div>

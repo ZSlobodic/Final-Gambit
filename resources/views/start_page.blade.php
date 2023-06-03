@@ -9,13 +9,13 @@
 
 </head>
 <body>
-        <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">ZiK</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ZiK</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -45,13 +45,15 @@
                 </ul>
 
                 <ul class="nav nav-pills">
-                        <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#scrollspyHeading1">First</a>
-                        </li>
-                        <li class="nav-item">
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="#scrollspyHeading2">Second</a>
-                        </li>
-                        <li class="nav-item dropdown">
+                    </li>
+
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
@@ -59,16 +61,21 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
                         </ul>
-                        </li>
-                    </ul>
+                    </li>
 
-                <form class="d-flex" role="search">
+                    <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                </ul>
+
+                <!--<form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                </form>-->
                 
-                    </nav>
-                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+                </div>
+            </div>
+        </nav>
+
+        <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
                     <h4 id="scrollspyHeading1">First heading</h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quibusdam et, accusantium architecto ipsum quos maxime delectus amet laudantium natus dolores earum aliquid, blanditiis, ipsam in temporibus deleniti reiciendis dolorum totam! Eum magnam qui cumque soluta illo repellat cum non repudiandae! Hic odio quos officiis eum ipsam, laudantium nulla tempore excepturi doloremque expedita praesentium soluta esse ullam cupiditate. Deleniti molestiae, repellat, minima tenetur ducimus excepturi nobis consectetur quasi, voluptate ea aspernatur quisquam deserunt assumenda rem sapiente suscipit amet labore? Nemo voluptatibus at mollitia repellendus iste maxime totam illo quaerat, officiis aliquid architecto illum eligendi, culpa optio nulla hic porro, sunt tenetur suscipit distinctio consectetur a aliquam consequuntur fuga? Voluptates accusantium possimus error incidunt, sequi ut, debitis quaerat ipsam dicta, quos voluptatibus minus? Quis ex molestiae non reiciendis fuga praesentium repellendus blanditiis quas consequatur temporibus atque natus possimus qui laborum ea ut, maiores eum eveniet pariatur dolorem nemo dolores. Repellat cum incidunt dolores eum quisquam quis aut esse minima expedita laborum quasi sunt harum beatae possimus vitae consequuntur quas architecto, accusamus unde neque deleniti aliquam omnis. Obcaecati error sit adipisci nulla ullam fugit asperiores, est tenetur provident eveniet esse explicabo voluptas numquam nobis. Facilis, quidem! Quam saepe eos aut veritatis est dolores. Autem officia nesciunt alias qui reprehenderit ut beatae error eum obcaecati? Tenetur corporis voluptas dolorum itaque quo architecto enim nesciunt sed doloribus numquam suscipit amet sunt, voluptatibus pariatur, consequuntur officiis. Nemo, illum quibusdam molestias aliquam dolorum ipsum, exercitationem odio, dolorem provident dolores quae amet odit cum dolore. Quaerat corrupti sapiente, iste eligendi maxime exercitationem natus ipsam quis libero eius quas nulla aut neque animi quisquam blanditiis voluptate, ex ut quidem repellendus vero ea dicta explicabo. Maxime blanditiis velit laudantium debitis maiores, harum officia, deserunt incidunt aspernatur possimus, unde facilis saepe quaerat neque assumenda voluptas vitae accusamus et adipisci. Ea nobis placeat optio accusamus atque aliquam tempore impedit nisi maiores eligendi commodi perferendis, quia voluptate et tenetur doloribus, tempora quos soluta aperiam nulla dignissimos unde dolore facere veniam. Excepturi rerum voluptatum molestias laboriosam reprehenderit, facere repellendus unde suscipit qui voluptate, deleniti itaque maiores est dicta laudantium quis! Provident voluptas eveniet velit recusandae nobis error dolore ipsum cupiditate cumque necessitatibus iste blanditiis tempore quisquam, maiores corporis alias fugit reiciendis minus ratione ipsam obcaecati minima eius? Illum eveniet expedita placeat? Ipsam amet eum architecto ab eaque illo repellendus, repudiandae provident fugit. Tenetur optio distinctio nam ipsum consequuntur dolorum! Eveniet vero beatae blanditiis.</p>
                     <h4 id="scrollspyHeading2">Second heading</h4>

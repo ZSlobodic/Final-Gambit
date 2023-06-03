@@ -12,10 +12,70 @@ class spells_controller extends Controller
     public function index(Request $request)
     {
       $spells = DB::table('spells')
+      ->where([['spell_name', '!=', Null],
+        [function ($query) use ($request)
+        {
+            if(($SNquery = $request->SNquery))
+            {
+                $query->orWhere('spell_name','LIKE','%' . $SNquery . '%')
+                //->orWhere('description','LIKE','%' . $search_reference . '%')
+                //->orWhere('scanner_code','LIKE','%' . $search_reference . '%')
+                ->get();
+            }
+        }]
+        ])
+        
+      ->where([['level', '!=', Null],
+        [function ($query) use ($request)
+        {
+            if(($SLquery = $request->SLquery))
+            {
+                $query->orWhere('level','LIKE','%' . $SLquery . '%')
+                //->orWhere('description','LIKE','%' . $search_reference . '%')
+                //->orWhere('scanner_code','LIKE','%' . $search_reference . '%')
+                ->get();
+            }
+        }]
+        ])
+      
+      ->where([['school', '!=', Null],
+        [function ($query) use ($request)
+        {
+            if(($SSquery = $request->SSquery))
+            {
+                $query->orWhere('school','LIKE','%' . $SSquery . '%')
+                //->orWhere('description','LIKE','%' . $search_reference . '%')
+                //->orWhere('scanner_code','LIKE','%' . $search_reference . '%')
+                ->get();
+            }
+        }]
+        ])
+
       -> get();
-      $spell = DB::table('spells')
+
+      if ($request -> SNquery == Null){
+        $spell = DB::table('spells')
+        ->where('id', '=', '1')
+        ->first();
+      } else {
+        $spell = DB::table('spells')
+        ->where([['spell_name', '!=', Null],
+        [function ($query) use ($request)
+        {
+            if(($SNquery = $request->SNquery))
+            {
+                $query->orWhere('spell_name','LIKE','%' . $SNquery . '%')
+                //->orWhere('description','LIKE','%' . $search_reference . '%')
+                //->orWhere('scanner_code','LIKE','%' . $search_reference . '%')
+                ->get();
+            }
+        }]
+        ])
+        -> first();
+      }
+      /*$spell = DB::table('spells')
       ->where('id', '=', '1')
-      ->first();
+      ->first();*/
       $classes = DB::table('classes')
       -> get();
       $subclasses = DB::table('subclasses')
@@ -26,7 +86,7 @@ class spells_controller extends Controller
       -> get();
       $feats = DB::table('feats')
       -> get();
-      //dd($classes);
+      //dd($request);
       return view('spells.index', [
         'spells' => $spells,
         'shown_spell' => $spell,
@@ -121,7 +181,7 @@ class spells_controller extends Controller
       ->with('success','Spell deleted successfully.');
     }
 
-    public function showSpell(int $id, Request $request, )
+    public function showSpell(int $id, Request $request)
     {
       $spell = DB::table('spells')
       ->where('id', '=', $id)
@@ -163,7 +223,5 @@ class spells_controller extends Controller
             dd($request, $lists);
         }
       }
-    }
-
-    
+    }    
 }

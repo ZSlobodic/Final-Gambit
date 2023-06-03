@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('Classes', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('class_name', 20);
+            $table->string('class_name', 100);
             $table->timestamps();
         });
     }
