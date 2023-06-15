@@ -1,7 +1,7 @@
 body {
-    background: white;
+    
     color: black;
-    max-width: 600px;
+    max-width: 1500px;
     margin: auto;
     font-family: sans-serif;
 }
@@ -10,8 +10,23 @@ p {
     line-height: 1.6;
 }
 
-article + article {
+/*article + article {
     margin-top: 3rem;
     padding-top: 3rem;
     border-top: 1px solid grey;
+}*/
+
+.bgi {
+    background-image: url("images/bgi.jpg");
+    background-color: black;
+}
+
+.img_txt_same_row {
+    display: inline-block;
+}
+
+.big_sheet {
+    float: left;
+    width: 550px;
+    height: auto;
 }

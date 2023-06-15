@@ -8,6 +8,8 @@ use App\Http\Controllers\subclasses_controller;
 use App\Http\Controllers\backgrounds_controller;
 use App\Http\Controllers\races_controller;
 use App\Http\Controllers\feats_controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\user_controller;
 
 
 /*
@@ -22,12 +24,24 @@ use App\Http\Controllers\feats_controller;
 */
 
 Route::get('/', function () {
-    return view('start_page');
+    if (Auth::check()){
+        return view('start_page_logged_in');
+    }else{
+        return view('start_page');
+    }
 });
 
 Route::get('/login', function () {
     return view ('login');
 });
+
+//User Data Base
+Route::get('/users', [user_controller::class, 'index'])->name('auth.users');
+
+Route::get('users/FetchUsers/{id}', [user_controller::class, 'FetchUsers'])->name('users.FetchUsers');
+
+Route::post('users/HowToAdmin/{id}', [races_controller::class, 'HowToAdmin'])->name('users.HowToAdmin');
+//End of user stuff
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -130,7 +130,7 @@
         <thead>
             <tr>
                 <!--<th scope="col">#</th>-->
-                <th style="position: sticky; top: 0; background-color: #fff; " scope="col">Name</th>
+                <th style="position: sticky; top: 0; background-color: #fff;"scope="col">Name</th>
                 <th style="position: sticky; top: 0; background-color: #fff" scope="col">Level</th>
                 <th style="position: sticky; top: 0; background-color: #fff" scope="col">Time</th>
                 <th style="position: sticky; top: 0; background-color: #fff" scope="col">School</th>
