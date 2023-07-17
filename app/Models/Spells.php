@@ -8,31 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class Spells extends Model
 {
     protected $fillable = [
-        'spell_name','school', 'level', 'ritual', 'casting_time', 'range', 'target', 'somatic', 'vocal', 'material', 'components', 'concentration', 'duration', 'description', 'at_higher_levels'
+        'spell_name','school', 'level', 'ritual', 'casting_time', 'range', 'target', 'somatic', 'vocal', 'material', 'components', 'concentration', 'duration', 'description', 'at_higher_levels', 'type'
       ];
     
-    public function Classes()
-    {
+    public function Classes(){
         return $this->belongsToMany(Classes::class);
-      }
+    }
 
-    public function Subclasses()
-    {
+    public function Subclasses(){
         return $this->belongsToMany(Subclasses::class);
-      }
+    }
     
-    public function Races()
-    {
+    public function Races(){
         return $this->belongsToMany(Races::class);
-      }
+    }
 
-    public function Backgrounds()
-    {
+    public function Backgrounds(){
         return $this->belongsToMany(Backgrounds::class);
-      }
+    }
 
-    public function Feats()
-    {
+    public function Feats(){
         return $this->belongsToMany(Feats::class);
-      }
+    }
+
+    public function Characters(){
+        return $this->belongsToMany(Characters::class);
+    }
+
     }

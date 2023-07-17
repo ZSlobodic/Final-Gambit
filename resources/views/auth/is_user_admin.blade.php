@@ -26,7 +26,7 @@
                         </li> -->
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('races.index') }}">Back</a>
+                            <a class="nav-link" href="{{ route('auth.users') }}">Back</a>
                         </li>
                     </ul>
 
@@ -65,7 +65,6 @@
             </div>
 
             <div class="container-lg">
-            <label for="reference">Edit Admin privileges: </label>
 
             @if($users->is_admin == 0)
             <div class="form-group">

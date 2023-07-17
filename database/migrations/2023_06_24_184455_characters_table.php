@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table)
+        Schema::create('characters', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('class_name', 100);
+            $table->string('character_name', 100);
+            $table->string('class_name');
+            $table->string('spell_name');
+            $table->string('SAM', 100);
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classes');
+        Schema::dropIfExists('characters');
     }
 };

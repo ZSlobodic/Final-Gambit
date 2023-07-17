@@ -10,6 +10,7 @@ use App\Http\Controllers\races_controller;
 use App\Http\Controllers\feats_controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\user_controller;
+use App\Http\Controllers\character_controller;
 
 
 /*
@@ -23,11 +24,25 @@ use App\Http\Controllers\user_controller;
 |
 */
 
+?>
+
+
+<?php
+
+
 Route::get('/', function () {
     if (Auth::check()){
         return view('start_page_logged_in');
     }else{
         return view('start_page');
+    }
+});
+
+Route::get('/import_all', function () {
+    if (Auth::user()->is_admin) {
+        return view ('import_all');
+    }else{
+        return view ('start_page_logged_in');
     }
 });
 
@@ -40,8 +55,21 @@ Route::get('/users', [user_controller::class, 'index'])->name('auth.users');
 
 Route::get('users/FetchUsers/{id}', [user_controller::class, 'FetchUsers'])->name('users.FetchUsers');
 
-Route::post('users/HowToAdmin/{id}', [races_controller::class, 'HowToAdmin'])->name('users.HowToAdmin');
+Route::post('users/HowToAdmin/{id}', [user_controller::class, 'HowToAdmin'])->name('users.HowToAdmin');
 //End of user stuff
+
+//Character stuff
+Route::get('/characters', [character_controller::class, 'index'])->name('characters.characters');
+
+Route::get('character/createCharacter', [character_controller::class, 'prepareCreateCharacter'])->name('characters.prepareCreateCharacter');
+Route::post('character/createCharacter', [character_controller::class, 'createCharacter'])->name('characters.createCharacter');
+
+Route::get('characters/editSpell/{id}', [character_controller::class, 'editCharacter'])->name('characters.editCharacter');
+Route::post('characters/updateSpell/{id}', [character_controller::class, 'updateCharacter'])->name('characters.updateCharacter');
+Route::get('characters/deleteCharacter/{id}', [character_controller::class, 'deleteCharacter'])->name('characters.deleteCharacter');
+
+//End of character stuff
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -117,3 +145,4 @@ Route::get('feats/editFeat/{id}', [feats_controller::class, 'editFeat'])->name('
 Route::post('feats/updateFeat/{id}', [feats_controller::class, 'updateFeat'])->name('feats.updateFeat');
 Route::get('feats/deleteFeat/{id}', [feats_controller::class, 'deleteFeat'])->name('feats.deleteFeat');
 // Adding a page for editing my stuff.
+?>

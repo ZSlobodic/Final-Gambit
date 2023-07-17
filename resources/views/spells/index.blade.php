@@ -145,8 +145,13 @@
                 <!--<th scope="col">Duration</th>-->
                 <!--<th scope="col">Description</th>-->
                 <!--<th scope="col">At Higher Levels</th>-->
-                <th style="position: sticky; top: 0; background-color: #fff" scope="col"></th>
-                <th style="position: sticky; top: 0; background-color: #fff" scope="col"></th>
+
+                @if ($is_logged_in == 1)
+                    @if ($user -> is_admin == 1)
+                        <th style="position: sticky; top: 0; background-color: #fff" scope="col"></th>
+                        <th style="position: sticky; top: 0; background-color: #fff" scope="col"></th>
+                    @endif
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -180,8 +185,15 @@
                     <!--<td>{{$spell->duration}}</td>-->
                     <!--<td>{{$spell->description}}</td>-->
                     <!--<td>{{$spell->at_higher_levels}}</td>-->
-                    <td class="col-md-1"><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('spells.editSpell',$spell->id) }}">Edit</a></td>
-                    <td class="col-md-1"><a class="btn d-grid gap-2 btn-danger btn-rounded btn-sm fw-bold" href="{{ route('spells.deleteSpell',$spell->id) }}" onclick="return confirm('Are you sure you want to delete {{$spell->spell_name}}? \nThis action is permananet and non-reversable.')">Delete</a></td>
+
+                    @if ($is_logged_in == 1)
+                        @if ($user -> is_admin == 1)
+                            <td class="col-md-1"><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('spells.editSpell',$spell->id) }}">Edit</a></td>
+                            <td class="col-md-1"><a class="btn d-grid gap-2 btn-danger btn-rounded btn-sm fw-bold" href="{{ route('spells.deleteSpell',$spell->id) }}" onclick="return confirm('Are you sure you want to delete {{$spell->spell_name}}? \nThis action is permananet and non-reversable.')">Delete</a></td>
+                        @endif
+                    @endif
+
+                    
                 </tr>
             @endforeach
         </tbody>
@@ -201,15 +213,16 @@
 
         @else
         <h1><td>{{$shown_spell->spell_name}}</td></h1>
-        <p>
-            @if (($shown_spell->level) == "Cantrip")
-                <td>{{$shown_spell->school}} {{$shown_spell->level}}</td>
-            @elseif (($shown_spell->ritual) == "1")
-                <td>{{$shown_spell->level}}-level {{$shown_spell->school}} (ritual)</td>
-            @elseif (($shown_spell->ritual) == "0")
-                <td>{{$shown_spell->level}}-level {{$shown_spell->school}}</td>
-            @endif
-        </p>
+        
+        <p><td>{{$shown_spell->type}}</td></p>
+        
+        <!--@if (($shown_spell->level) == "cantrip")
+            <td>{{$shown_spell->school}} {{$shown_spell->level}}</td>
+        @elseif (($shown_spell->ritual) == "1")
+            <td>{{$shown_spell->level}}-level {{$shown_spell->school}} (ritual)</td>
+        @elseif (($shown_spell->ritual) == "0")
+            <td>{{$shown_spell->level}}-level {{$shown_spell->school}}</td>
+        @endif-->
 
         <!--<p>Ritual:
             @if (($shown_spell->ritual) == "0")
@@ -235,9 +248,7 @@
         <p>Casting time: <td>{{$shown_spell->casting_time}}</td></p>
         <p>Range: <td>{{$shown_spell->range}}</td></p>
         <p>
-            @if (($shown_spell->target) == "<Placeholder>")
-                
-            @else
+            @if (($shown_spell->target))
                 <td>Target: {{$shown_spell->target}}</td>
             @endif
         </p>
@@ -277,9 +288,7 @@
         <hr>
         <p><td>{{$shown_spell->description}}</td></p>
         <p><td>
-            @if (($shown_spell->at_higher_levels) == "<Placeholder>")
-                
-            @else
+            @if (($shown_spell->at_higher_levels))
                 <td>At higher levels: {{$shown_spell->at_higher_levels}}</td>
             @endif
         </td></p>

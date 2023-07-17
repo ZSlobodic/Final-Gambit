@@ -5,19 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Classes extends Model
+class Characters extends Model
 {
     protected $fillable = [
-        'class_name'
+        'character_name','SAM'
       ];
 
-    public function Spells()
-    {
-        return $this->belongsToMany(Spells::class);
-      }
 
-    public function Characters()
-    {
-        return $this->belongsToMany(Characters::class);
-      }
+    public function Spells(): HasMany{
+        return $this->belongsToMany(Spells::class);
+    }
+
+    public function User(){
+        return $this->belongsTo(User::class);
+    }
+
+
+    
 }

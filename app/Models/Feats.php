@@ -13,6 +13,6 @@ class Feats extends Model
 
     public function Spells()
     {
-        return $this->belongsToMany(Spells::class);
-      }
+      return $this->belongsToMany(Spells::class);
+    }
 }

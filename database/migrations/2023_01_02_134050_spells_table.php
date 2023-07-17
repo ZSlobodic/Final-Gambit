@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('duration', 200);
             $table->longtext('description');
             $table->text('at_higher_levels')->nullable();
+            $table->string('type', 200);
             $table->timestamps();
         });
     }

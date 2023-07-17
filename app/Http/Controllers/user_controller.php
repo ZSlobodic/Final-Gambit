@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\user_controller;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class user_controller extends Controller
 {
@@ -14,7 +15,25 @@ class user_controller extends Controller
     $users = DB::table('users')
       -> get();
 
-    return view('auth.users', ['users' => $users]);
+    $user = Auth::user();
+
+    if ($user == NULL){
+      $is_logged_in = 0;
+    }else{
+      $is_logged_in = 1;
+    }
+
+
+    //dd($user);
+    return view('auth.users', ['users' => $users,
+    'user' => $user,
+    'is_logged_in' => $is_logged_in]);
+
+    //add use Auth; at the top
+    //add $user = Auth::user(); in the index function
+    //edit all other return views by adding 'user' => $user
+
+    //To check if someone is logged in, copy the whole if and the is_logged_in deal
   }
 
   //Fetch Admin tools to be given

@@ -13,21 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table)
+        Schema::create('User_Characters', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('class_name', 100);
+            $table->integer('userid')->unsigned();
+            $table->integer('characterid')->unsigned();
             $table->timestamps();
         });
     }
 
-    /**
+    /*
      * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('classes');
+        Schema::dropIfExists('User_Characters');
     }
 };

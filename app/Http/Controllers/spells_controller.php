@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\spells_controller;
 use App\Models\Spells;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class spells_controller extends Controller
 {
@@ -87,6 +88,19 @@ class spells_controller extends Controller
       $feats = DB::table('feats')
       -> get();
       //dd($request);
+      
+
+      $users = DB::table('users')
+      -> get();
+
+      $user = Auth::user();
+
+      if ($user == NULL){
+        $is_logged_in = 0;
+      }else{
+        $is_logged_in = 1;
+      }
+
       return view('spells.index', [
         'spells' => $spells,
         'shown_spell' => $spell,
@@ -94,7 +108,9 @@ class spells_controller extends Controller
         'subclasses' => $subclasses,
         'races' => $races,
         'backgrounds' => $backgrounds,
-        'feats' => $feats
+        'feats' => $feats,
+        'user' => $user,
+        'is_logged_in' => $is_logged_in
       ]);
     }
 
@@ -128,7 +144,43 @@ class spells_controller extends Controller
 
           return view('spells.create_spell');
         }
+    public function importSpells($spells){ 
+          /*dd($request);*/
+          foreach($spells as $spell){
+            $exists = DB::table('spells')
+            ->where('spell_name', '=', $spell->name)
+            ->first();
+            if (!$exists){
+              $item = new Spells();
+              $item->spell_name = $spell->name;
+              $item->school = $spell->school;
+              $item->level = $spell->level;
+              $item->type = $spell->type;
+              $item->ritual = $spell->ritual;
+              $item->casting_time = $spell->casting_time;
+              $item->range = $spell->range;
+              $item->somatic = $spell->components->somatic;
+              $item->vocal = $spell->components->verbal;
+              $item->material = $spell->components->material;
+              if (isset($spell->components->materials_needed)){
+                $item->components = $spell->components->materials_needed[0];
+              }
+              else{
+                $item->components = false;
+              }
+              $item->concentration = str_contains( $spell->duration, "Concentration" ) ? true : false;
+              $item->duration = $spell->duration;
+              $item->description = $spell->description;
+              if (isset($spell->higher_levels)){
+                $item->at_higher_levels = $spell->higher_levels;
+              }
+              $item->save();
+            }
 
+          }
+    }
+
+    
     public function editSpell(int $id)
     {
       $spell = DB::table('spells')
@@ -200,6 +252,14 @@ class spells_controller extends Controller
       $feats = DB::table('feats')
       -> get();
       //dd($classes);
+
+      $user = Auth::user();
+
+      if ($user == NULL){
+        $is_logged_in = 0;
+      }else{
+        $is_logged_in = 1;
+      }
       
       return view('spells.index', [
         'spells' => $spells,
@@ -208,7 +268,9 @@ class spells_controller extends Controller
         'subclasses' => $subclasses,
         'races' => $races,
         'backgrounds' => $backgrounds,
-        'feats' => $feats
+        'feats' => $feats,
+        'user' => $user,
+        'is_logged_in' => $is_logged_in
       ]);
 
       $lists = [];
