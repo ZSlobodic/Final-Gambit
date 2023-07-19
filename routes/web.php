@@ -10,7 +10,7 @@ use App\Http\Controllers\races_controller;
 use App\Http\Controllers\feats_controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\user_controller;
-use App\Http\Controllers\character_controller;
+use App\Http\Controllers\CharacterController;
 
 
 /*
@@ -59,14 +59,16 @@ Route::post('users/HowToAdmin/{id}', [user_controller::class, 'HowToAdmin'])->na
 //End of user stuff
 
 //Character stuff
-Route::get('/characters', [character_controller::class, 'index'])->name('characters.characters');
+Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
 
-Route::get('character/createCharacter', [character_controller::class, 'prepareCreateCharacter'])->name('characters.prepareCreateCharacter');
-Route::post('character/createCharacter', [character_controller::class, 'createCharacter'])->name('characters.createCharacter');
+Route::get('characters/createCharacter', [CharacterController::class, 'prepareCreateCharacter'])->name('characters.prepareCreateCharacter');
+Route::post('characters/createCharacter', [CharacterController::class, 'createCharacter'])->name('characters.createCharacter');
 
-Route::get('characters/editSpell/{id}', [character_controller::class, 'editCharacter'])->name('characters.editCharacter');
-Route::post('characters/updateSpell/{id}', [character_controller::class, 'updateCharacter'])->name('characters.updateCharacter');
-Route::get('characters/deleteCharacter/{id}', [character_controller::class, 'deleteCharacter'])->name('characters.deleteCharacter');
+Route::get('characters/showSheet/{id}', [CharacterController::class, 'show'])->name('characters.show');
+
+Route::get('characters/editSpell/{id}', [CharacterController::class, 'editCharacter'])->name('characters.editCharacter');
+Route::post('characters/updateSpell/{id}', [CharacterController::class, 'updateCharacter'])->name('characters.updateCharacter');
+Route::get('characters/deleteCharacter/{id}', [CharacterController::class, 'deleteCharacter'])->name('characters.deleteCharacter');
 
 //End of character stuff
 

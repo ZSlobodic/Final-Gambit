@@ -44,7 +44,7 @@
                     </li> -->
 
                     <li class="nav-item">
-                        <a class="nav-link" href="character/createCharacter">New Character</a>
+                        <a class="nav-link" href="characters/createCharacter">New Character</a>
                     </li>
                 </ul>
 
@@ -76,16 +76,14 @@
                 <th scope="col">#</th>
                 <th scope="col">Character Name</th>
                 <th scope="col">Class</th>
-                <th scope="col">Some Spells</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($characters as $character)
                 <tr>
                     <th scope="row" class="col-md-1">{{$character->id}}</th>
-                    <td>{{$character->character_name}}</td>
-                    <td>{{$character->class_name}}</td>
-                    <td>{{$character->spell_name}}</td>
+                    <td><a href="characters/showSheet/{{ $character->id }}">{{ $character->character_name }}</a></td>
+                    <td>{{ $character->class_name }}</td>
 
                     
                     <td class="col-md-1"><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('characters.editCharacter',$character->id) }}">Edit</a></td>

@@ -31,8 +31,9 @@ class Spells extends Model
         return $this->belongsToMany(Feats::class);
     }
 
-    public function Characters(){
-        return $this->belongsToMany(Characters::class);
+    public function characters()
+    {
+        return $this->belongsToMany(Character::class, 'character_spell', 'spell_id', 'character_id')->withTimestamps();
     }
 
-    }
+}

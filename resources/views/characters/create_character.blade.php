@@ -45,8 +45,8 @@
 
 
 
-                
-                <label for="reference">Class Name: </label>
+                <?php
+                /*<label for="reference">Class Name: </label>
                 <select name="character_class">
                     @foreach ($classes as $class)
                         <option value="{{ $class->class_name }}">{{ $class->class_name }}</option>
@@ -58,8 +58,8 @@
                     @foreach ($spells as $spell)
                         <option value="{{ $spell->spell_name }}">{{ $spell->spell_name }}</option>
                     @endforeach
-                </select>
-
+                </select>*/
+                ?>
 
 
 

@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('characters', function (Blueprint $table)
         {
-            $table->increments('id');
+            $table->id();
             $table->string('character_name', 100);
-            $table->string('class_name');
-            $table->string('spell_name');
+            $table->string('class_name')->nullable();
             $table->string('SAM', 100);
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('Spells', function (Blueprint $table)
         {
-            $table->increments('id');
+            $table->id();
             $table->string('spell_name', 200);
             $table->string('school', 200);
             $table->string('level', 200);
