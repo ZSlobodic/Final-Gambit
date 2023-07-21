@@ -36,9 +36,9 @@
                 Spells:
             </p>
 
-            @forelse ($character->characterSpells as $spell)
+            @forelse ($character->spells as $spell)
                 <li class="inline italic text-gray-600 px-1 py-6">
-                    {{ $spell['spell_name']}}
+                    {{ $spell->spell_name }}
                 </li>
             @empty
                 <p>
@@ -46,13 +46,6 @@
                 </p>
             @endforelse
         </ul>
-
-        <p class="pt-4 italic">
-            Spells:
-            @foreach ($spell->character as $character)
-                {{ $character->spell_name }}
-            @endforeach
-        </p>
 
         <hr class="mt-4 mb-8">
     </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Spell;
 
 class Character extends Model
 {
@@ -24,6 +25,8 @@ class Character extends Model
     {
         return $this->belongsToMany(Spell::class, 'character_spell', 'character_id', 'spell_id')->withTimestamps();
     }
+
+
     
     
     /*public function Spells(): HasMany{

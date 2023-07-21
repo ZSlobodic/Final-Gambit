@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CharacterController;
 use App\Models\Character;
+use App\Models\Spell;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\spells_controller;
 
 class CharacterController extends Controller
 {
@@ -18,6 +20,28 @@ class CharacterController extends Controller
 
     public function createCharacter(Request $request)
     { 
+      $data = $request->validate([
+        'character_name' => 'required|string|max:100',
+        'class_name' => 'nullable|string|max:100',
+        'SAM' => 'nullable|string|max:100',
+        'spells' => 'nullable|array',
+        'spells.*' => 'exists:spells,id', // Validate each spell ID exists in the 'spells' table
+    ]);
+
+    $character = Character::create([
+        'character_name' => $data['character_name'],
+        'class_name' => $data['class_name'],
+        'SAM' => $data['SAM'],
+    ]);
+
+    if (!empty($data['spells'])) {
+        $character->spells()->attach($data['spells']);
+    }
+
+    return redirect()->route('characters.index');
+      
+      
+      /*
       //dd($request->all());
       $data = $request->all();
       $data['class_name'] = 'Wizard';
@@ -25,14 +49,17 @@ class CharacterController extends Controller
       $character = Character::create($data);
       //dd($character);
       return redirect()->route('characters.index');
+      */
     }
 
     public function show($id)
     {
       $character = Character::find($id);
+      
 
       return view('characters.show')->with('character', $character);
     }
+
 
 
     public function editCharacter(int $id)
@@ -40,13 +67,13 @@ class CharacterController extends Controller
       $classes = DB::table('classes')
         -> get();
 
-      $spells = DB::table('spells')
+      $spells = DB::table('spell')
         -> get();
       
       $characters = DB::table('characters')
           ->where('id', '=', $id)
           ->first();
-      return view('characters.edit_character', compact('characters'), ['classes' => $classes, 'spells' => $spells]);
+      return view('characters.edit_character', compact('characters'), ['classes' => $classes, 'spell' => $spells]);
     }
 
     public function updateCharacter(Request $request, int $id)
@@ -74,13 +101,23 @@ class CharacterController extends Controller
     public function prepareCreateCharacter(Request $request)
     {
       $classes = DB::table('classes')
-        -> get();
+        ->get();
 
-      $spells = DB::table('spells')
+      $spells = Spell::orderBy('spell_name', 'asc')
+        ->get();
+      
+        /*$spells = DB::table('spells')
         ->orderBy('spell_name', 'asc')
-        -> get();
+        -> get();*/
 
-      return view('characters.create_character', ['classes' => $classes, 'title' => 'Create Character', 'spells' => $spells, 'title' => 'Add Spells']);
+      return view('characters.create_character', [
+          'classes' => $classes,
+          'title' => 'Create Character',
+          'spells' => $spells,
+          //'title' => 'Add Spells'
+      ]);
+      
+        /*return view('characters.create_character', ['classes' => $classes, 'title' => 'Create Character', 'spells' => $spells, 'title' => 'Add Spells']);*/
     }
 
     public function deleteCharacter(int $id)

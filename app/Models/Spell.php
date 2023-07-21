@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Spells extends Model
+class Spell extends Model
 {
     protected $fillable = [
         'spell_name','school', 'level', 'ritual', 'casting_time', 'range', 'target', 'somatic', 'vocal', 'material', 'components', 'concentration', 'duration', 'description', 'at_higher_levels', 'type'
