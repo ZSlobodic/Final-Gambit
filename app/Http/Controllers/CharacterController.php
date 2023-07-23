@@ -20,25 +20,29 @@ class CharacterController extends Controller
 
     public function createCharacter(Request $request)
     { 
-      $data = $request->validate([
+      /*$data = $request->validate([
         'character_name' => 'required|string|max:100',
         'class_name' => 'nullable|string|max:100',
         'SAM' => 'nullable|string|max:100',
         'spells' => 'nullable|array',
-        'spells.*' => 'exists:spells,id', // Validate each spell ID exists in the 'spells' table
-    ]);
+        'added_spells' => 'exists:spells,id', // Validate each spell ID exists in the 'spells' table
+      ]);*/
 
-    $character = Character::create([
-        'character_name' => $data['character_name'],
-        'class_name' => $data['class_name'],
-        'SAM' => $data['SAM'],
-    ]);
+      $data = $request->all();
+      $data['class_name'] = 'abc';
 
-    if (!empty($data['spells'])) {
-        $character->spells()->attach($data['spells']);
-    }
 
-    return redirect()->route('characters.index');
+      $character = Character::create([
+          'character_name' => $data['character_name'],
+          'class_name' => $data['class_name'],
+          'SAM' => $data['SAM'],
+      ]);
+      
+      if (!empty($data['added_spells'])) {
+          $character->spells()->attach($data['added_spells']);
+      }
+      
+      return redirect()->route('characters.index');
       
       
       /*

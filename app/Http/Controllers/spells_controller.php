@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\spells_controller;
-use App\Models\Spells;
+use App\Models\Spell;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
@@ -151,7 +151,7 @@ class spells_controller extends Controller
             ->where('spell_name', '=', $spell->name)
             ->first();
             if (!$exists){
-              $item = new Spells();
+              $item = new Spell();
               $item->spell_name = $spell->name;
               $item->school = $spell->school;
               $item->level = $spell->level;

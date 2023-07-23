@@ -33,7 +33,7 @@ class Spell extends Model
 
     public function characters()
     {
-        return $this->belongsToMany(Character::class, 'character_spell', 'spell_id', 'character_id')->withTimestamps();
+        return $this->belongsToMany(Character::class)->withTimestamps();
     }
 
 }

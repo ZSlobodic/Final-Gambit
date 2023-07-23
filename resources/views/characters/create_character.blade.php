@@ -47,16 +47,16 @@
 
                 
                 <label for="reference">Class Name: </label>
-                <select name="character_class">
+                <select name="class_id">
                     @foreach ($classes as $class)
                         <option value="{{ $class->class_name }}">{{ $class->class_name }}</option>
                     @endforeach
                 </select>
 
                 <label for="reference" class="form-label select-label">Add Spells (ctrl to select multiple): </label>
-                <select name="added_spells" multiple>
+                <select name="added_spells[]" multiple>
                     @foreach ($spells as $spell)
-                        <option value="{{ $spell->spell_name }}">{{ $spell->spell_name }}</option>
+                        <option value="{{ $spell->id }}">{{ $spell->spell_name }}</option>
                     @endforeach
                 </select>
 
