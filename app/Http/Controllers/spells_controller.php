@@ -273,7 +273,7 @@ class spells_controller extends Controller
         'is_logged_in' => $is_logged_in
       ]);
 
-      $lists = [];
+      /*$lists = [];
       foreach($request -> class as $key => $class){
         switch ($class) {
           case ("Artificer"):
@@ -284,6 +284,6 @@ class spells_controller extends Controller
             $lists[] = 'Bard';
             dd($request, $lists);
         }
-      }
+      }*/
     }    
 }

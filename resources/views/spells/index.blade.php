@@ -54,6 +54,26 @@
                 </form>-->
             </div>
         </div>
+
+        <ul class="nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> 
+                    {{ Auth::user()->name }}
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="profile">Profile</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                <a class="dropdown-item" href="#">{{ __('Log Out') }}</a>
+                            </dropdown-link>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
 </nav>
 
 
@@ -275,23 +295,18 @@
                 @break
             @endswitch
         </p>
-        <p>Duration:
-            @switch ($shown_spell->concentration)
-                @case (1)
-                    <td>Concentration, {{$shown_spell->duration}}</td>
-                @break
-                @case (0)
-                    <td>{{$shown_spell->duration}}</td>
-                @break
-            @endswitch
-        </p>
+
+        <p>Duration: {{$shown_spell->duration}}</p>
+
         <hr>
+        
         <p><td>{{$shown_spell->description}}</td></p>
         <p><td>
             @if (($shown_spell->at_higher_levels))
                 <td>At higher levels: {{$shown_spell->at_higher_levels}}</td>
             @endif
         </td></p>
+
         @endif
     </div>
 </div>

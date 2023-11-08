@@ -29,7 +29,6 @@ class CharacterController extends Controller
       ]);*/
 
       $data = $request->all();
-      $data['class_name'] = 'abc';
 
 
       $character = Character::create([
@@ -71,13 +70,13 @@ class CharacterController extends Controller
       $classes = DB::table('classes')
         -> get();
 
-      $spells = DB::table('spell')
+      $spells = DB::table('spells')
         -> get();
       
       $characters = DB::table('characters')
           ->where('id', '=', $id)
           ->first();
-      return view('characters.edit_character', compact('characters'), ['classes' => $classes, 'spell' => $spells]);
+      return view('characters.edit_character', compact('characters'), ['classes' => $classes, 'spells' => $spells]);
     }
 
     public function updateCharacter(Request $request, int $id)
@@ -87,18 +86,22 @@ class CharacterController extends Controller
           'character_name' => 'required',
           'SAM' => 'required'
         ]);
+   
+        $character = Character::findOrFail($id);
+
+        $character->character_name = $request->character_name;
+        $character->class_name = $request->character_class;
+        $character->SAM = $request->SAM;
+        $character->save();
+        
+        $character->spells()->detach();
 
 
-        $characters = DB::table('characters')
-          ->where('id', '=', $id)
-          ->update(['character_name' => $request->character_name,
-            'class_name' => $request->character_class,
-            'spell_name' => $request->added_spells,
-            'SAM' => $request->SAM
-            /*'place' => $request->place,
-            'procent' => $request->procent, 
-            'scanner_code' => $request->scanner_code*/ ]);
-        return redirect()->route('characters.characters')
+        if (!empty($request->added_spells)) {
+            $character->spells()->attach($request->added_spells);
+        }
+
+        return redirect()->route('characters.index')
           ->with('success','Character updated successfully.');
     }
 
@@ -130,7 +133,7 @@ class CharacterController extends Controller
       ->where('id', '=', $id)
       ->delete();
 
-      return redirect()->route('characters.characters')
+      return redirect()->route('characters.index')
       ->with('success','Character deleted successfully.');
     }
 

@@ -30,13 +30,13 @@
                             Data Bases
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="spells">Spell Data Base</a></li>
-                            <li><a class="dropdown-item" href="classes">Class Data Base</a></li>
-                            <li><a class="dropdown-item" href="subclasses">Subclasses Data Base</a></li>
-                            <li><a class="dropdown-item" href="backgrounds">Background Data Base</a></li>
-                            <li><a class="dropdown-item" href="races">Race Data Base</a></li>
-                            <li><a class="dropdown-item" href="feats">Feat Data Base</a></li>
-                            <li><a class="dropdown-item nav-link disabled" href="#">Item Data Base</a></li>
+                            <li><a class="dropdown-item" href="spells">Spell Database</a></li>
+                            <li><a class="dropdown-item" href="classes">Class Database</a></li>
+                            <li><a class="dropdown-item" href="subclasses">Subclasses Database</a></li>
+                            <li><a class="dropdown-item" href="backgrounds">Background Database</a></li>
+                            <li><a class="dropdown-item" href="races">Race Database</a></li>
+                            <li><a class="dropdown-item" href="feats">Feat Database</a></li>
+                            <li><a class="dropdown-item nav-link disabled" href="#">Item Database</a></li>
                             <!--<li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                         </ul>
@@ -115,26 +115,26 @@
                 <p>With that said, I hope you manage to create the character you envision! Next destination... destiny!</p>
             <br>
 
-            <h4 id="scrollspyHeading1">How to get started?</h4>
+            <h1 id="scrollspyHeading1">How to get started?</h1>
                 <p>No matter if you are playing in person or online, the very first step is to get an idea of what kind of character you desire to play. Without thinking about any rules of the game, just take a minute or two to think just what is it that you want your character to be and be able to do. D&D 5E has small limits when it comes to ideas, as long as its not something really over the top since who would even enjoy a character who is good at everything? Not me at least...</p>
                 <p>Done thinking? Good.</p>
                 <p>No matter if you may not find something that is word for word on your character, there is always a work around. There are no Katanas in the item list but it is little to no issue to make the plain Longsword into a Katana but keeping the mehanical values of a Longsword. Flavor should always be FREE!! Unless it doesn't fit in in your Dungeon Masters world, I suggest talking about it with them.</p>
             
             <br>
 
-            <h4 id="scrollspyHeading2">Basics of the PC Sheet</h4>
+            <h2 id="scrollspyHeading2">Basics of the PC Sheet</h2>
                 <p>When it comes to Character Sheets, they can come in all shapes and sizes. I will be using the most common one for my explanations but any custom one you may find online should have the core features in them. The sheet itself is divided usually into three pieces. The Core, Bio, and Spells. I will be explaning each one and the specific parts of each as I think its needed.</p>
 
                 <div class="accordion" id="character_sheet">
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header">
+                        <h3 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                             
                             Core Sheet
 
                         </button>
-                        </h2>
+                        </h3>
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
                         <div class="accordion-body">
                             <img class="big_sheet" src="{{ asset('images/dnd_5e_sheet_numbered.png') }}" alt="Core sheet which is numbered.">

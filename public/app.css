@@ -1,5 +1,4 @@
 body {
-    
     color: black;
     max-width: 1500px;
     margin: auto;
@@ -7,6 +6,7 @@ body {
 }
 
 p {
+    color: black;
     line-height: 1.6;
 }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\feats_controller;
 use App\Models\Feats;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class feats_controller extends Controller
 {
@@ -14,7 +15,22 @@ class feats_controller extends Controller
     $feats = DB::table('feats')
       -> get();
 
-    return view('feats.index', ['feats' => $feats]);
+
+    $users = DB::table('users')
+      -> get();
+
+    $user = Auth::user();
+
+    if ($user == NULL){
+      $is_logged_in = 0;
+    }else{
+      $is_logged_in = 1;
+    }
+
+    return view('feats.index', ['feats' => $feats,
+    'users' => $users,
+    'user' => $user,
+    'is_logged_in' => $is_logged_in]);
   }
 
     public function getcreateFeat(Request $request)

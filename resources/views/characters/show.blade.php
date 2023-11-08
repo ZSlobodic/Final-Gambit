@@ -22,9 +22,9 @@
 
     <div class="py-10 text-centar">
         <div class="m-auto">
-            <span class="uppercase text-blue-500 font-bold text-xs italic">
+            <!--<span class="uppercase text-blue-500 font-bold text-xs italic">
                 Class: {{ $character->class_name }}
-            </span>
+            </span>-->
         
             <span class="uppercase text-blue-500 font-bold text-xs italic">
                 Spellcasting Ability Modifier: {{ $character->SAM }}
@@ -36,14 +36,143 @@
                 Spells:
             </p>
 
+            <p>Cantrip:</p>
             @forelse ($character->spells as $spell)
-                <li class="inline italic text-gray-600 px-1 py-6">
-                    {{ $spell->spell_name }}
-                </li>
+                @if (($spell->level) == "cantrip")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                        
+                    </li>
+                @endif
             @empty
-                <p>
-                    No spells found.
-                </p>
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>1st level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "1")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a> 
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>2nd level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "2")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>3rd level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "3")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>4th level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "4")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>5th level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "5")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>6th level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "6")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>7th level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "7")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>8th level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "8")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
+            @endforelse
+
+            <br>
+
+            <p>9th level:</p>
+            @forelse ($character->spells as $spell)
+                @if (($spell->level) == "9")
+                    <li class="inline italic text-gray-600 px-1 py-6">
+                        <input type="checkbox" value="1">
+                        <a href = "{{ route('spells.showSpell',$spell->id) }}" target="_blank">{{$spell->spell_name}}</a>
+                    </li>
+                @endif
+            @empty
+                <p>No spells found.</p>
             @endforelse
         </ul>
 

@@ -47,10 +47,14 @@
 
                 
                 <label for="reference">Class Name: </label>
-                <select name="class_id">
-                    @foreach ($classes as $class)
+                <select name="class_name">
+                @foreach ($classes as $key => $class)
+                    @if ($key === 0)
+                        <option value="{{ $class->class_name }}" selected>{{ $class->class_name }}</option>
+                    @else
                         <option value="{{ $class->class_name }}">{{ $class->class_name }}</option>
-                    @endforeach
+                    @endif
+                @endforeach
                 </select>
 
                 <label for="reference" class="form-label select-label">Add Spells (ctrl to select multiple): </label>

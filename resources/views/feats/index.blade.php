@@ -81,8 +81,13 @@
                     <th scope="row">{{$feat->id}}</th>
                     <td>{{$feat->feat_name}}</td>
 
-                    <td class="col-md-1"><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('feats.editFeat',$feat->id) }}">Edit</a></td>
-                    <td class="col-md-1"><a class="btn d-grid gap-2 btn-danger btn-rounded btn-sm fw-bold" href="{{ route('feats.deleteFeat',$feat->id) }}" onclick="return confirm('Are you sure you want to delete {{$feat->feat_name}}? \nThis action is permananet and non-reversable.')">Delete</a></td>
+
+                    @if ($is_logged_in == 1)
+                        @if ($user -> is_admin == 1)
+                            <td class="col-md-1"><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('feats.editFeat',$feat->id) }}">Edit</a></td>
+                            <td class="col-md-1"><a class="btn d-grid gap-2 btn-danger btn-rounded btn-sm fw-bold" href="{{ route('feats.deleteFeat',$feat->id) }}" onclick="return confirm('Are you sure you want to delete {{$feat->feat_name}}? \nThis action is permananet and non-reversable.')">Delete</a></td>
+                        @endif
+                    @endif
                 </tr>
             @endforeach
         </tbody>

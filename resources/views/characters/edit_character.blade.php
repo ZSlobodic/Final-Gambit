@@ -76,13 +76,14 @@
                 @endforeach
             </select>
 
-            <label for="reference">Add Spells (ctrl to select multiple): </label>
-            <select name="added_spells" multiple>
-                @foreach ($spells as $spell)
-                    <option value="{{ $spell->spell_name }}">{{ $spell->spell_name }}</option>
-                @endforeach
-            </select>
-            
+
+            <label for="reference" class="form-label select-label">Add Spells (ctrl to select multiple): </label>
+                <select name="added_spells[]" multiple>
+                    @foreach ($spells as $spell)
+                        <option value="{{ $spell->id }}">{{ $spell->spell_name }}</option>
+                    @endforeach
+                </select>
+
             <br>
             
             <label for="reference">SAM: </label>

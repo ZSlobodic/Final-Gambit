@@ -14,7 +14,7 @@ class Character extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['character_name', 'class_id', 'SAM'];
+    protected $fillable = ['character_name', 'class_name', 'SAM'];
 
     public function characterSpells()
     {
@@ -23,7 +23,7 @@ class Character extends Model
     
     public function spells()
     {
-        return $this->belongsToMany(Spell::class)->withTimestamps();
+        return $this->belongsToMany(Spell::class);
     }
 
     public function characterClass()
