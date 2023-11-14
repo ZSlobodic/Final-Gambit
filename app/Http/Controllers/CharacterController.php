@@ -8,6 +8,7 @@ use App\Models\Character;
 use App\Models\Spell;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\spells_controller;
+use Auth;
 
 class CharacterController extends Controller
 {
@@ -15,7 +16,22 @@ class CharacterController extends Controller
     {
       $characters = Character::all();
 
-      return view('characters.index', ['characters' => $characters]);
+      $users = DB::table('users')
+        -> get();
+  
+      $user = Auth::user();
+  
+      if ($user == NULL){
+        $is_logged_in = 0;
+      }else{
+        $is_logged_in = 1;
+      }
+
+
+      return view('characters.index', ['characters' => $characters,
+      'users' => $users,
+      'user' => $user,
+      'is_logged_in' => $is_logged_in]);
     }
 
     public function createCharacter(Request $request)
@@ -59,8 +75,22 @@ class CharacterController extends Controller
     {
       $character = Character::find($id);
       
+      $users = DB::table('users')
+        -> get();
+  
+      $user = Auth::user();
+  
+      if ($user == NULL){
+        $is_logged_in = 0;
+      }else{
+        $is_logged_in = 1;
+      }
 
-      return view('characters.show')->with('character', $character);
+      return view('characters.show', 
+      ['users' => $users,
+      'user' => $user,
+      'is_logged_in' => $is_logged_in])
+        ->with('character', $character);
     }
 
 

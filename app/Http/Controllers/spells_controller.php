@@ -110,6 +110,7 @@ class spells_controller extends Controller
         'backgrounds' => $backgrounds,
         'feats' => $feats,
         'user' => $user,
+        'users' => $users,
         'is_logged_in' => $is_logged_in
       ]);
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\races_controller;
 use App\Models\Races;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class races_controller extends Controller
 {
@@ -14,7 +15,21 @@ class races_controller extends Controller
     $races = DB::table('races')
       -> get();
 
-    return view('races.index', ['races' => $races]);
+    $users = DB::table('users')
+      -> get();
+
+    $user = Auth::user();
+
+    if ($user == NULL){
+      $is_logged_in = 0;
+    }else{
+      $is_logged_in = 1;
+    }
+
+    return view('races.index', ['races' => $races,
+    'users' => $users,
+    'user' => $user,
+    'is_logged_in' => $is_logged_in]);
   }
 
     public function getcreateRace(Request $request)

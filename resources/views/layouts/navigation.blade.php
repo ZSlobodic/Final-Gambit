@@ -31,7 +31,9 @@
                                 <li class="bg-dark"><a class="dropdown-item" style="color:white" href="backgrounds">Background Data Base</a></li>
                                 <li class="bg-dark"><a class="dropdown-item" style="color:white" href="races">Race Data Base</a></li>
                                 <li class="bg-dark"><a class="dropdown-item" style="color:white" href="feats">Feat Data Base</a></li>
-                                <li class="bg-dark"><a class="dropdown-item" style="color:white" href="#">Item Data Base</a></li>
+                                <li class="bg-dark"><a class="dropdown-item nav-link disabled" style="color:white" href="#">Item Data Base</a></li>
+                                <li class="bg-dark"><hr class="dropdown-divider"></li>
+                                <li class="bg-dark"><a class="dropdown-item" style="color:white" href="characters">Characters Data Base</a></li>
                             </x-slot>
                         </x-dropdown>
                     </div>

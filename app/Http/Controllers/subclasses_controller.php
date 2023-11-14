@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\subclasses_controller;
 use App\Models\Subclasses;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class subclasses_controller extends Controller
 {
@@ -14,7 +15,21 @@ class subclasses_controller extends Controller
     $subclasses = DB::table('subclasses')
       -> get();
 
-    return view('subclasses.index', ['subclasses' => $subclasses]);
+    $users = DB::table('users')
+      -> get();
+
+    $user = Auth::user();
+
+    if ($user == NULL){
+      $is_logged_in = 0;
+    }else{
+      $is_logged_in = 1;
+    }
+
+    return view('subclasses.index', ['subclasses' => $subclasses,
+    'users' => $users,
+    'user' => $user,
+    'is_logged_in' => $is_logged_in]);
   }
 
     public function getcreateSubclass(Request $request)

@@ -13,15 +13,12 @@
 
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-                <a class="navbar-brand" href="#">ZiK</a>
+                <a class="navbar-brand" href="/">ZiK</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Data Bases
@@ -33,7 +30,16 @@
                         <li><a class="dropdown-item" href="/backgrounds">Background Data Base</a></li>
                         <li><a class="dropdown-item" href="/races">Race Data Base</a></li>
                         <li><a class="dropdown-item" href="/feats">Feat Data Base</a></li>
-                        <li><a class="dropdown-item" href="#">Item Data Base</a></li>
+                        <li><a class="dropdown-item nav-link disabled" href="#">Item Data Base</a></li>
+                        @if ($is_logged_in == 1)
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="characters">Characters Data Base</a></li>
+                        @endif
+                        @if ($is_logged_in == 1)
+                            @if ($user -> is_admin == 1)
+                                <li><a class="dropdown-item" href="users">All Users</a></li>
+                            @endif
+                        @endif
                         <!--<li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                     </ul>
@@ -42,9 +48,13 @@
                     <a class="nav-link disabled">Disabled</a>
                     </li> -->
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/spells/createSpell">New Spell</a>
-                    </li>
+                    @if ($is_logged_in == 1)
+                        @if ($user -> is_admin == 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="/import_all">Import all spells</a>
+                            </li>
+                        @endif
+                    @endif
                 </ul>
 
                 
@@ -55,29 +65,42 @@
             </div>
         </div>
 
-        <ul class="nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> 
-                    {{ Auth::user()->name }}
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="profile">Profile</a></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+        @if ($is_logged_in == 1)
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> 
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="profile">Profile</a></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
 
-                            <dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                                <a class="dropdown-item" href="#">{{ __('Log Out') }}</a>
-                            </dropdown-link>
-                        </form>
+                                <dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <a class="dropdown-item" href="#">{{ __('Log Out') }}</a>
+                                </dropdown-link>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        @elseif ($is_logged_in == 0)
+            <ul class="nav">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
                     </li>
-                </ul>
-            </li>
-        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/register">Register</a>
+                    </li>
+                </div>
+            </ul>
+        @endif
 </nav>
 
 
-<div class="container" style="margin-bottom: 40px; margin-top:40px">
+<div class="container" style="margin-bottom: 5px; margin-top:40px">
    
     <div class="input-group">
         <td>
@@ -97,15 +120,15 @@
                     <select name="SLquery" id="SLquery" class="form-control">
                         <option value="">Choose...</option>
                         <option value="Cantrip">Cantrip</option>
-                        <option value="1st">1st</option>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                        <option value="5th">5th</option>
-                        <option value="6th">6th</option>
-                        <option value="7th">7th</option>
-                        <option value="8th">8th</option>
-                        <option value="9th">9th</option>
+                        <option value="1">1st</option>
+                        <option value="2">2nd</option>
+                        <option value="3">3rd</option>
+                        <option value="4">4th</option>
+                        <option value="5">5th</option>
+                        <option value="6">6th</option>
+                        <option value="7">7th</option>
+                        <option value="8">8th</option>
+                        <option value="9">9th</option>
                     </select>
                     <button type="submit" value="Submit" class="btn btn-primary" id="button-addon1" style="margin-right:40px">Search</button>
                 </div>
@@ -227,89 +250,89 @@
 
 
 <div class="col">
-<div class="card" style="width: 29rem; max-height: 800px; overflow-y: scroll">
-    <div class="card-body">
-        @if ($shown_spell == Null)
+    <div class="card" style="width: 29rem; max-height: 800px; overflow-y: scroll">
+        <div class="card-body">
+            @if ($shown_spell == Null)
 
-        @else
-        <h1><td>{{$shown_spell->spell_name}}</td></h1>
-        
-        <p><td>{{$shown_spell->type}}</td></p>
-        
-        <!--@if (($shown_spell->level) == "cantrip")
-            <td>{{$shown_spell->school}} {{$shown_spell->level}}</td>
-        @elseif (($shown_spell->ritual) == "1")
-            <td>{{$shown_spell->level}}-level {{$shown_spell->school}} (ritual)</td>
-        @elseif (($shown_spell->ritual) == "0")
-            <td>{{$shown_spell->level}}-level {{$shown_spell->school}}</td>
-        @endif-->
-
-        <!--<p>Ritual:
-            @if (($shown_spell->ritual) == "0")
-                <td>No</td>
+            @else
+            <h1><td>{{$shown_spell->spell_name}}</td></h1>
+            
+            <p><td>{{$shown_spell->type}}</td></p>
+            
+            <!--@if (($shown_spell->level) == "cantrip")
+                <td>{{$shown_spell->school}} {{$shown_spell->level}}</td>
             @elseif (($shown_spell->ritual) == "1")
-                <td>Yes</td>
-            @endif
-        </p>-->
+                <td>{{$shown_spell->level}}-level {{$shown_spell->school}} (ritual)</td>
+            @elseif (($shown_spell->ritual) == "0")
+                <td>{{$shown_spell->level}}-level {{$shown_spell->school}}</td>
+            @endif-->
 
-        <!--<p>
-            Ritual:
-            @switch ($shown_spell->ritual)
-                @case (0)
+            <!--<p>Ritual:
+                @if (($shown_spell->ritual) == "0")
                     <td>No</td>
-                @break
-                @case (1)
+                @elseif (($shown_spell->ritual) == "1")
                     <td>Yes</td>
-                @break
-            @endswitch
-        </p>-->
+                @endif
+            </p>-->
+
+            <!--<p>
+                Ritual:
+                @switch ($shown_spell->ritual)
+                    @case (0)
+                        <td>No</td>
+                    @break
+                    @case (1)
+                        <td>Yes</td>
+                    @break
+                @endswitch
+            </p>-->
 
 
-        <p>Casting time: <td>{{$shown_spell->casting_time}}</td></p>
-        <p>Range: <td>{{$shown_spell->range}}</td></p>
-        <p>
-            @if (($shown_spell->target))
-                <td>Target: {{$shown_spell->target}}</td>
+            <p>Casting time: <td>{{$shown_spell->casting_time}}</td></p>
+            <p>Range: <td>{{$shown_spell->range}}</td></p>
+            <p>
+                @if (($shown_spell->target))
+                    <td>Target: {{$shown_spell->target}}</td>
+                @endif
+            </p>
+
+            <!--Components which are represented by the V, S, and M letters.-->
+            <p>Components: <!--Vocal-->
+                @if (($shown_spell->vocal) == "1" and ($shown_spell->material) == "1" or ($shown_spell->somatic) == "1")
+                    <td>V,</td>
+                @elseif (($shown_spell->vocal) == "1" and ($shown_spell->material) == "0" and ($shown_spell->somatic) == "0")
+                    <td>V</td>
+                @endif
+
+                <!--Somatic-->
+                @if (($shown_spell->somatic) == "1" and ($shown_spell->material) == "1")
+                    <td>S,</td>
+                @elseif (($shown_spell->somatic) == "1" and ($shown_spell->material) == "0")
+                    <td>S</td>
+                @endif
+
+                <!--Material-->
+                @switch ($shown_spell->material)
+                    @case (1)
+                        <td>M ({{$shown_spell->components}})</td>
+                    @break
+                @endswitch
+            </p>
+
+            <p>Duration: {{$shown_spell->duration}}</p>
+
+            <hr>
+            
+            <p><td>{{$shown_spell->description}}</td></p>
+            <p><td>
+                @if (($shown_spell->at_higher_levels))
+                    <td>At higher levels: {{$shown_spell->at_higher_levels}}</td>
+                @endif
+            </td></p>
+
             @endif
-        </p>
-
-        <!--Components which are represented by the V, S, and M letters.-->
-        <p>Components: <!--Vocal-->
-            @if (($shown_spell->vocal) == "1" and ($shown_spell->material) == "1" or ($shown_spell->somatic) == "1")
-                <td>V,</td>
-            @elseif (($shown_spell->vocal) == "1" and ($shown_spell->material) == "0" and ($shown_spell->somatic) == "0")
-                <td>V</td>
-            @endif
-
-            <!--Somatic-->
-            @if (($shown_spell->somatic) == "1" and ($shown_spell->material) == "1")
-                <td>S,</td>
-            @elseif (($shown_spell->somatic) == "1" and ($shown_spell->material) == "0")
-                <td>S</td>
-            @endif
-
-            <!--Material-->
-            @switch ($shown_spell->material)
-                @case (1)
-                    <td>M ({{$shown_spell->components}})</td>
-                @break
-            @endswitch
-        </p>
-
-        <p>Duration: {{$shown_spell->duration}}</p>
-
-        <hr>
-        
-        <p><td>{{$shown_spell->description}}</td></p>
-        <p><td>
-            @if (($shown_spell->at_higher_levels))
-                <td>At higher levels: {{$shown_spell->at_higher_levels}}</td>
-            @endif
-        </td></p>
-
-        @endif
+        </div>
     </div>
-</div>
 </div>
 
 

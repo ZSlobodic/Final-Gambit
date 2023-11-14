@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\backgrounds_controller;
 use App\Models\Backgrounds;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class backgrounds_controller extends Controller
 {
@@ -14,8 +15,23 @@ class backgrounds_controller extends Controller
     $backgrounds = DB::table('backgrounds')
       -> get();
 
-    return view('backgrounds.index', ['backgrounds' => $backgrounds]);
+    $users = DB::table('users')
+      -> get();
+
+    $user = Auth::user();
+
+    if ($user == NULL){
+      $is_logged_in = 0;
+    }else{
+      $is_logged_in = 1;
+    }
+
+    return view('backgrounds.index', ['backgrounds' => $backgrounds,
+    'users' => $users,
+    'user' => $user,
+    'is_logged_in' => $is_logged_in]);
   }
+
     public function getcreateBackground(Request $request)
       {
         return view('backgrounds.create_background');

@@ -15,15 +15,12 @@
 
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-                <a class="navbar-brand" href="#">ZiK</a>
+                <a class="navbar-brand" href="/">ZiK</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Data Bases
@@ -35,7 +32,16 @@
                         <li><a class="dropdown-item" href="backgrounds">Background Data Base</a></li>
                         <li><a class="dropdown-item" href="races">Race Data Base</a></li>
                         <li><a class="dropdown-item" href="feats">Feat Data Base</a></li>
-                        <li><a class="dropdown-item" href="#">Item Data Base</a></li>
+                        <li><a class="dropdown-item nav-link disabled" href="#">Item Data Base</a></li>
+                        @if ($is_logged_in == 1)
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="characters">Characters Data Base</a></li>
+                        @endif
+                        @if ($is_logged_in == 1)
+                            @if ($user -> is_admin == 1)
+                                <li><a class="dropdown-item" href="users">All Users</a></li>
+                            @endif
+                        @endif
                         <!--<li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>-->
                     </ul>
@@ -44,9 +50,13 @@
                     <a class="nav-link disabled">Disabled</a>
                     </li> -->
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="backgrounds/createBackground">New Background</a>
-                    </li>
+                    @if ($is_logged_in == 1)
+                        @if ($user -> is_admin == 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="backgrounds/createBackground">New Background</a>
+                            </li>
+                        @endif
+                    @endif
                 </ul>
 
                 
@@ -56,6 +66,39 @@
                 </form>-->
             </div>
         </div>
+
+        @if ($is_logged_in == 1)
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> 
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="profile">Profile</a></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <a class="dropdown-item" href="#">{{ __('Log Out') }}</a>
+                                </dropdown-link>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        @elseif ($is_logged_in == 0)
+            <ul class="nav">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/register">Register</a>
+                    </li>
+                </div>
+            </ul>
+        @endif
 </nav>
 
 <div class="row">
@@ -83,8 +126,12 @@
                     <th scope="row">{{$background->id}}</th>
                     <td>{{$background->background_name}}</td>
 
-                    <td class="col-md-1"><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('backgrounds.editBackground',$background->id) }}">Edit</a></td>
-                    <td class="col-md-1"><a class="btn d-grid gap-2 btn-danger btn-rounded btn-sm fw-bold" href="{{ route('backgrounds.deleteBackground',$background->id) }}" onclick="return confirm('Are you sure you want to delete {{$background->background_name}}? \nThis action is permananet and non-reversable.')">Delete</a></td>
+                    @if ($is_logged_in == 1)
+                        @if ($user -> is_admin == 1)
+                            <td class="col-md-1"><a class="btn d-grid gap-2 btn-primary btn-rounded btn-sm fw-bold" href="{{ route('backgrounds.editBackground',$background->id) }}">Edit</a></td>
+                            <td class="col-md-1"><a class="btn d-grid gap-2 btn-danger btn-rounded btn-sm fw-bold" href="{{ route('backgrounds.deleteBackground',$background->id) }}" onclick="return confirm('Are you sure you want to delete {{$background->background_name}}? \nThis action is permananet and non-reversable.')">Delete</a></td>
+                        @endif    
+                    @endif
                 </tr>
             @endforeach
         </tbody>

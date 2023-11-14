@@ -11,101 +11,63 @@
 <body class="bgi">
     <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">ZiK</a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
+                <a class="navbar-brand" href="/">ZiK</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!--<li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>-->
-                    <!--<li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>-->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Data Bases
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="spells">Spell Database</a></li>
-                            <li><a class="dropdown-item" href="classes">Class Database</a></li>
-                            <li><a class="dropdown-item" href="subclasses">Subclasses Database</a></li>
-                            <li><a class="dropdown-item" href="backgrounds">Background Database</a></li>
-                            <li><a class="dropdown-item" href="races">Race Database</a></li>
-                            <li><a class="dropdown-item" href="feats">Feat Database</a></li>
-                            <li><a class="dropdown-item nav-link disabled" href="#">Item Database</a></li>
-                            <!--<li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                        </ul>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Data Bases
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="spells">Spell Data Base</a></li>
+                        <li><a class="dropdown-item" href="classes">Class Data Base</a></li>
+                        <li><a class="dropdown-item" href="subclasses">Subclasses Data Base</a></li>
+                        <li><a class="dropdown-item" href="backgrounds">Background Data Base</a></li>
+                        <li><a class="dropdown-item" href="races">Race Data Base</a></li>
+                        <li><a class="dropdown-item" href="feats">Feat Data Base</a></li>
+                        <li><a class="dropdown-item nav-link disabled" href="#">Item Data Base</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="characters">Characters Data Base</a></li>
+                        <!--<li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                    </ul>
                     </li>
                     <!-- <li class="nav-item">
                     <a class="nav-link disabled">Disabled</a>
                     </li> -->
                 </ul>
 
-                <ul class="nav middle">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#scrollspyHeading1">How to get started?</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#scrollspyHeading2">Basics of the PC Sheet</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Step by Step Guide</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#scrollspyHeading3">Ability Scores</a></li>
-                            <li><a class="dropdown-item" href="#scrollspyHeading4">Basic Proficiencies</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#scrollspyHeading5">Race</a></li>
-                            <li><a class="dropdown-item" href="#scrollspyHeading6">Background</a></li>
-                            <li><a class="dropdown-item" href="#scrollspyHeading7">Class</a></li>
-                            <li><a class="dropdown-item" href="#scrollspyHeading8">Spells</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <!--<ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/register">Register</a>
-                    </li>
-                </ul>-->
-
+                
                 <!--<form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>-->
-
-                <!-- Settings Dropdown -->
-                <ul class="nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> 
-                            {{ Auth::user()->name }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="profile">Profile</a></li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                                        <a class="dropdown-item" href="#">{{ __('Log Out') }}</a>
-                                    </dropdown-link>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-
             </div>
-        </nav>
+        </div>
+
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> 
+                        {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="profile">Profile</a></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <a class="dropdown-item" href="#">{{ __('Log Out') }}</a>
+                                </dropdown-link>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+    </nav>
 
         <!--<img src="{{ asset('images/dnd_5e_sheet.png') }}" alt="description of myimage">-->
 
@@ -453,7 +415,7 @@
 
                 <p>- At the end of every Background there should be some Suggested Characteristics. Those are suggested traits you can give to your character in the Core sheet, section 11. They don't effect your character in any way mechanically but they do give you a hand in terms of roleplaying. The great things about those are that you don't even have to take what the Background is giving you since you can make your own too. In any case, the PHB suggests to have 2 Personality Traits, 1 Ideal, 1 Bond, and 1 Flaw at the very least.</p>
 
-                <div class="accordion" id="FAQ_Races">
+                <div class="accordion" id="FAQ_Backgrounds">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="true" aria-controls="panelsStayOpen-collapseSeven">
@@ -478,7 +440,7 @@
             <h4 id="scrollspyHeading7">Class</h4>
                 <p>The Class is the selling point of your Character. Are you a big hunk of muscle swining a heavy weapon? Perhaps a more sneaky type to strike from the shadows? A magic wielder who blasts anyone using the knowledge of the arcane? There are a lot of combinations of what one can do. I will give a rundown of each class to give you a decent idea of what is each of them about.</p>
                 
-                <div class="accordion" id="FAQ_Races">
+                <div class="accordion" id="explanation_class">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="true" aria-controls="panelsStayOpen-collapseEight">
@@ -589,14 +551,145 @@
 
                 <br>
 
-                <p>Moving onwards, you have potentially many features a class may get. If your source material is good, it should be everything in sequence. Add every Feature individually on your Core sheet, section 13.</p>
+                <p>Moving onwards, you have potentially many features a class may get. If your source material is good, it should be everything in sequence. Add every Feature individually on your Core sheet, section 13. And if you have been making a martial character who doesn't have any spells then this is where your character creation ends in terms of tehnical parts.</p>
 
                 
+                <br><br>
+
+            <h4 id="scrollspyHeading8">Spellcasting</h4>
+                
+
+                <p>So you have decided to use spells? Quite brave if you are a newbie. It is not imposible to to get used to them and it is not that bad once you do. It will all depend on your will power. In addition to the Core Sheet, you will be using the Spell Sheet as well. The way a Class uses their Spellcasting can be vastly different from Class to Class so I will have to devide all of them in some form of category.</p>
+                <p>Every spell is a part of a School of Magic which follows the some kind of theme going along with it. All schools of magic are explained in the following dropdown.</p>
+
+                <div class="accordion" id="school_of_magic">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseNine" aria-expanded="true" aria-controls="panelsStayOpen-collapseNine">
+
+                                School of Magic Explained
+
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+
+                                <p>- <strong>Abjuration</strong> - encompasses protective spells. They create a physical or magical barrier, negate magical or physical abilities, harm trespassers, or even banish the subject of the spell to another plane of existence.</p>
+                                <p>- <strong>Conjuration</strong> - calls materials, creatures or energy to the caster and can also be reversed to send creatures to other places, either over long distances or even to a whole different plane of existence.</p>
+                                <p>- <strong>Divination</strong> - enables the caster to learn secrets long forgotten, interpret dreams, predict the future, to find hidden things or foil deceptive spells.</p>
+                                <p>- <strong>Enchantment</strong> - affects the minds of others, influencing or controlling their behavior.</p>
+                                <p>- <strong>Evocation</strong> - manipulates energy or tap an unseen source of power in order to produce a desired end. In effect, they created something out of nothing. Many of these spells produced spectacular effects, and evocation spells could deal large amounts of damage.</p>
+                                <p>- <strong>Illusion</strong> - deceive the senses or minds of others. They cause people to see things that are not there, not see things that are there, hear phantom noises, or remember things that never happened.</p>
+                                <p>- <strong>Necromancy</strong> - manipulate the power of death, unlife, and the life force. Spells involving the undead made up a large portion of this school.</p>
+                                <p>- <strong>Transmutation</strong> - change the physical properties of some creature, thing, or condition.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Before jumping into it, there is something to keep in mind for any spellcaster you might be playing. Spell Lists are different for each individual class but some spells may be located in multiple spell lists rather then just one. Every spellcasting class has itwn own <strong>Spellcasting Ability Modifier</strong> (or <strong>SAM</strong> for short) which is calculated into <strong>Spell Save DC</strong> and <strong>Spell Attack Bonus</strong> in the same way. Number of Cantrips known is described by the class. Every spell of Level 1 or higher requires a spell slot to be casted (unless said otherwise) and to fullfill some of the three components (V, S, or M) mentioned on the individual spell (unless mentioned otherwise). There is also a way to cast a spell and not expand a spell slot. Mostly done through some feats outside of the class, there is still a way to do it with some specific classes. The meaning of all of that is explained right here:</p>
+                <p>- <strong>Spell Save DC</strong> - the number which has to be met or beaten by an individual who is subjugated to a negative effect or an effect they are not willing to take. The spell itself says that a DC has to be beaten and the number you will use for it is described in the following way: 8 + Proficiency Bonus + SAM + any other source you may get it from if any. Some spells don't have a DC and they just happen like Sleep and Cure Wounds.</p>
+                <p>- <strong>Spell Attack Bonus</strong> - some spells work like a classic ranged attack. You have to hit your target so that it can effect it. The number used for it is described in the following way: Proficiency Bonus + SAM. The rules for attacks still apply just as normal for spell attacks.</p>
+                <p>- <strong>Vocal</strong> (V) - It requires the caster to be able to speak. Usually it doesn't matter what is said in any case. Be careful of situation where there is no sound or your mouth is covered, you won't be able to cast any spells with the V component in that case.</p>
+                <p>- <strong>Somatic</strong> (S) - It requires the ability to move ONE hand. A free hand to do the jazz hands is all you need to fulfill the requirement so make sure not to be occupied or tied up. And yes, the hand needs to be empty. You can't use the hand which is holding something to fullfil the S component EXCEPT if the hand is holding a Spellcasting Focus or using to grab Material component. More on that later.</p>
+                <p>- <strong>Material</strong> (M) - It requires to have an item on your person in order to cast the spell. A Wizards shoping list is always of high veraity of items unless they decide to get around it. It is always fancy to pull out some sand and make others fall asleep with a Sleep spell but maybe it would be too uncomfrtable to buy Bat Guano just to make that Fireball happen. That is why the item called Component Pouch and Spellcasting Focuses exist! They both fulfill the same need so I will explain it simply; having any of the two means that any spell being casted has their M component already fulfilled as long as you have ONE free hand, just like for the S component, available to use it. Holding the Wand or grabbing something from the pouch is all it needs to be used. QUICK HEADS UP: some spells have a disclaimer on them which say text like "which the spell consumes" on the M section. That means that no Component Pouch or Spellcasting Focus can help you here, you will have to get those manually every time. Same thing applies if a spell requires any form of Gold even if it doesn't have the text that the spell consumes it (doesn't apply to items with specified gold value and that are lacking the text of consuming the item like for the spell Identify which needs a pearl worth 100 gp).</p>
+                <p>- <strong>Ritual Casting</strong> - another special way of how a Spellcaster can cast a spell. As long as the all components are fulfilled; the caster adds 10 minutes to the casting time of the spell to cast the spell without expanding a spell slot.</p>
+                
+                <br>
+
+                <div class="accordion" id="full_casters">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTen" aria-expanded="true" aria-controls="panelsStayOpen-collapseTen">
+
+                                Full Casters
+
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+
+                                <p>In this category there will be: Bard, Cleric, Druid, Sorcerer, Warlock and Wizard. What makes Full Caster a Full Caster is the ability to obtain Level 9 spell slots or the ability to cast level 9 spells from their normal class features.</p>
+                                <p>- <strong>Bard</strong> - their Spellcasting is somewhat limited by the number of spells they can learn as its described in their Spellcasting feature. Limited knowledge of number of spells means they are able to swap out spells on a level up and they happen to have Ritual casting where they can use it on any spell with the ritual tag on.</p>
+                                <p>- <strong>Cleric</strong> - they know all of their spells from the get go. To compensate for such advantage is that they have to prepare their spells to limit the flexibility. The number of spells they can prepare is equal to their WIS MOD and their levels in Cleric. They too have ritual casting but it is only limited to the spells they have prepared rather then just any.</p>
+                                <p>- <strong>Druid</strong> - same deal like the Cleric. Of course the Spell List is different.</p>
+                                <p>- <strong>Sorcerer</strong> - same deal like the Bard. Of course the Spell list is different, they know different number of spells which are still limited based on their spellcasting feature, and they don't have Ritual Casting.</p>
+                                <p>- <strong>Warlock</strong> - they are... special to say the least. They have the least amount of spell slots and only get them to Level 5! They make up for it with the Levels from 6 to 9 are still able to be casted by using their Warlock Features and they manage to recover spell slots on a short rest rather then a long rest like every other class.</p>
+                                <p>- <strong>Wizard</strong> - they are also a bit special but more understanding then the Warlock. They don't have a limited spells known ever. They start out with 6 level 1 spells and learn 2 with each level up but are also able to learn spells on the fly! As long as the Wizard gets some spell scroll or a spellbook from some other Wizard; they are able to spend time and money scaling to the Level of the spell being learned to add it to their spellbook. Of course they still need to prepare spells just like the Druid and Cleric do but with their INT score. What makes the Wizard shine is his spell list which is the biggest of them all. Only lacking some Divination spells for the most part. They also have the best Ritual casting in the game! The spell only needs to have the ritual tag and they need to know it, no need for them to be prepared too.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion" id="three-quarter_casters">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEleven" aria-expanded="true" aria-controls="panelsStayOpen-collapseEleven">
+
+                                Three-Quarter Caster
+
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseEleven" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+
+                                <p>In this category there will be only the Artificer. They are the only class that has Cantrips but is only able to learn spells up to Level 5.</p>
+                                <p>- <strong>Artificer</strong> - the only other INT based spellcasting class. The way preparing spells works is similar, their full INT MOD + half their Artificer level divided by 2 (rounded down to the minimum of one spell) but they know all of their spells. They also have Ritual casting as long as the spell with the ritual tag is prepared.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion" id="half_casters">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwelve" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwelve">
+
+                                Half Casters
+
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+
+                                <p>In this category there will be Paladin and Ranger. They don't have any Cantrips and can only learn spells up to Level 5.</p>
+                                <p>- <strong>Paladin</strong> - same deal like the Artificer, just no Cantrips and no Ritual casting. The SAM is CHA and their Spell List is different.</p>
+                                <p>- <strong>Ranger</strong> - number of spells known is limited but there is no need to prepare them. The rest is pretty much the same with its own Spell list.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion" id="third_casters">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThirteen" aria-expanded="true" aria-controls="panelsStayOpen-collapseThirteen">
+
+                                Third Casters
+
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThirteen" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+
+                                <p>In this category there will be two subclasses: Eldrtich Knight Fighter and Arcane Trickster Rogue. They are spellcasting subclasses which are obtained by reaching Level 3 in those two classes. They do get Cantrips but they can only learn up to Level 4 spells.</p>
+                                <p>- <strong>Eldritch Knight</strong> - very limited spell pool which is not just in number but partially in the School of spell too. It stilladds more to the class which works. No preparing spells.</p>
+                                <p>- <strong>Arcane Trickster</strong> - similar limitations but different numbers here and there. The idea on the other hand is the same.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <br><br>
+
+                <p>All in all, follow what the damn book says and read! There is no escape from reading to get things done. Always ask the DM for any help you might need. Any DM who doesn't want to help is a bad DM in my eyes! Of course to a degree. I hope this guide can help you out to some degree before jumping into the world of the Forgotten Realms, or some other place.</p>
             
-            
-            
-            
-            <br><br>
+                <br><br>
         </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

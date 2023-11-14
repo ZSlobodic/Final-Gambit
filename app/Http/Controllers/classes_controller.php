@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\classes_controller;
 use App\Models\Classes;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class classes_controller extends Controller
 {
@@ -14,7 +15,21 @@ class classes_controller extends Controller
       $classes = DB::table('classes')
         -> get();
 
-      return view('classes.index', ['classes' => $classes]);
+      $users = DB::table('users')
+        -> get();
+  
+      $user = Auth::user();
+  
+      if ($user == NULL){
+        $is_logged_in = 0;
+      }else{
+        $is_logged_in = 1;
+      }
+
+      return view('classes.index', ['classes' => $classes,
+      'users' => $users,
+      'user' => $user,
+      'is_logged_in' => $is_logged_in]);
     }
 
     public function getcreateClass(Request $request)
